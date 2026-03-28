@@ -1,0 +1,51 @@
+\contentsline {section}{\numberline {1}Introduction}{4}{section.1}%
+\contentsline {section}{\numberline {2}Site Analysis Report}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Location Overview}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Geographical Features and Coverage Considerations}{4}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Visual Site Analysis}{4}{subsection.2.3}%
+\contentsline {section}{\numberline {3}System Parameters and Link Budget}{6}{section.3}%
+\contentsline {subsection}{\numberline {3.1}4G LTE System Parameters}{6}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Maximum Path Loss Calculation}{6}{subsection.3.2}%
+\contentsline {subparagraph}{Simple calculation (as per spec):}{6}{section*.2}%
+\contentsline {subparagraph}{Extended calculation:}{6}{section*.3}%
+\contentsline {section}{\numberline {4}3GPP TR~38.901 Path Loss Models}{6}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Effective Heights and Breakpoint Distance}{6}{subsection.4.1}%
+\contentsline {subparagraph}{Calculation for Kagal ($h_{\text {BS}} = 25$~m, $h_{\text {UT}} = 1.5$~m, $f_c = 1.8$~GHz):}{7}{section*.4}%
+\contentsline {subsection}{\numberline {4.2}Urban Macrocell (UMa) --- LOS}{7}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Urban Macrocell (UMa) --- NLOS}{7}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Urban Microcell (UMi) Street Canyon --- LOS}{7}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Urban Microcell (UMi) Street Canyon --- NLOS}{7}{subsection.4.5}%
+\contentsline {subsection}{\numberline {4.6}Rural Macrocell (RMa) --- LOS}{7}{subsection.4.6}%
+\contentsline {subsection}{\numberline {4.7}Rural Macrocell (RMa) --- NLOS}{7}{subsection.4.7}%
+\contentsline {section}{\numberline {5}Path Loss Model Selection and Justification}{7}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Why UMa for Kagal?}{7}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Why NLOS for Conservative Planning?}{7}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Supplementary Models}{8}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Tentative Design Based on $D/R$ Ratio}{8}{section.6}%
+\contentsline {subparagraph}{Tentative Design:}{8}{section*.5}%
+\contentsline {section}{\numberline {7}Calculation of Maximum Cell Radius ($R_{\max }$)}{8}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Algebraic Solution from UMa NLOS}{8}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Verification}{8}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Comparison of $R_{\max }$ Across Models}{8}{subsection.7.3}%
+\contentsline {section}{\numberline {8}Network Design and Cell Planning}{9}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Design Philosophy}{9}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Proposed Cell Sites}{9}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Coverage Area per Site}{9}{subsection.8.3}%
+\contentsline {section}{\numberline {9}Network Verification and Iterations}{9}{section.9}%
+\contentsline {subsection}{\numberline {9.1}Iteration 1: Initial Design (3 Sites)}{9}{subsection.9.1}%
+\contentsline {subsection}{\numberline {9.2}Iteration 2: Revised Design (5 Sites)}{9}{subsection.9.2}%
+\contentsline {subsection}{\numberline {9.3}Iteration 3: Optimisation}{9}{subsection.9.3}%
+\contentsline {section}{\numberline {10}Path Loss at Cell Boundaries}{9}{section.10}%
+\contentsline {section}{\numberline {11}Microcell and Umbrella Cell Justification}{10}{section.11}%
+\contentsline {subsection}{\numberline {11.1}Microcell Deployment}{10}{subsection.11.1}%
+\contentsline {subsubsection}{\numberline {11.1.1}Justification}{10}{subsubsection.11.1.1}%
+\contentsline {subsubsection}{\numberline {11.1.2}UMi NLOS Path Loss at Microcell Edge}{10}{subsubsection.11.1.2}%
+\contentsline {subsection}{\numberline {11.2}Umbrella Cell Deployment}{10}{subsection.11.2}%
+\contentsline {subsubsection}{\numberline {11.2.1}Justification}{10}{subsubsection.11.2.1}%
+\contentsline {section}{\numberline {12}Part 2: Small Scale Effects Simulation}{10}{section.12}%
+\contentsline {subsection}{\numberline {12.1}Simulation Methodology}{10}{subsection.12.1}%
+\contentsline {subsection}{\numberline {12.2}Simulation Results}{10}{subsection.12.2}%
+\contentsline {section}{\numberline {13}Conclusions}{11}{section.13}%
+\contentsline {section}{\numberline {14}References}{11}{section.14}%
+\contentsline {section}{\numberline {A}Python Code: Link Budget Calculator}{11}{appendix.A}%
+\contentsline {section}{\numberline {B}Python Code: Fast Fading Simulator}{13}{appendix.B}%
