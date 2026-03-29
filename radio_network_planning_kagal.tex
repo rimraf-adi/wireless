@@ -126,35 +126,33 @@ Dudhganga River zone & Low & Avoid cross-river propagation \\
 
 \subsection{Visual Site Analysis}
 
-Figures~\ref{fig:hospital}--\ref{fig:sw1} provide visual evidence of the propagation environment, confirming a varied urban landscape with tall institutions and dense, low-rise residential clusters.
-
-\begin{figure}[H]
+\begin{figure*}[t]
 \centering
-\includegraphics[width=0.85\columnwidth]{public/hospital.png}
-\caption{City Pride Hospital: 4--5 storey buildings in town core.}
-\label{fig:hospital}
-\end{figure}
-
-\begin{figure}[H]
+\begin{minipage}{0.48\textwidth}
 \centering
-\includegraphics[width=0.85\columnwidth]{public/living.png}
-\caption{Dense residential area: narrow streets, 1--2 storey structures (NLOS conditions).}
-\label{fig:living}
-\end{figure}
-
-\begin{figure}[H]
+\includegraphics[width=\linewidth]{public/hospital.png}
+\centerline{\small (a) City Pride Hospital: 4--5 storey buildings.}
+\end{minipage}\hfill
+\begin{minipage}{0.48\textwidth}
 \centering
-\includegraphics[width=0.85\columnwidth]{public/school1.png}
-\caption{Shree Shahu High School: public buildings with moderate foliage.}
-\label{fig:school}
-\end{figure}
+\includegraphics[width=\linewidth]{public/living.png}
+\centerline{\small (b) Dense residential: narrow streets, NLOS.}
+\end{minipage}
 
-\begin{figure}[H]
+\vspace{4pt}
+\begin{minipage}{0.48\textwidth}
 \centering
-\includegraphics[width=0.85\columnwidth]{public/sw1.png}
-\caption{South-western residential cluster: dense, uneven structures.}
-\label{fig:sw1}
-\end{figure}
+\includegraphics[width=\linewidth]{public/school1.png}
+\centerline{\small (c) Shree Shahu High School: moderate foliage.}
+\end{minipage}\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\linewidth]{public/sw1.png}
+\centerline{\small (d) SW residential cluster: dense, uneven.}
+\end{minipage}
+\caption{Visual site analysis of Kagal's propagation environment. (a)~Tall institutional buildings in the town core. (b)~Narrow residential streets confirming NLOS conditions. (c)~Public buildings with foliage causing additional attenuation. (d)~Uneven south-western structures.}
+\label{fig:site_photos}
+\end{figure*}
 
 %=============================================================================
 \section{System Parameters and Link Budget}
@@ -247,9 +245,9 @@ $\sigma_{\text{SF}} = 6.0$~dB. Applicability: $10 \leq d_{2\text{D}} \leq 5000$~
 
 \subsection{Model Selection Justification}
 
-\textbf{Why UMa?} Kagal's urban core has building heights of 10--15~m (Fig.~\ref{fig:hospital}), BS height of 25~m matches UMa default, and the required cell radii (0.5--3~km) fall within UMa validity ($d_{2\text{D}} \leq 5000$~m).
+\textbf{Why UMa?} Kagal's urban core has building heights of 10--15~m (Fig.~\ref{fig:site_photos}a), BS height of 25~m matches UMa default, and the required cell radii (0.5--3~km) fall within UMa validity ($d_{2\text{D}} \leq 5000$~m).
 
-\textbf{Why NLOS?} Most users lack LOS due to dense residential layouts (Fig.~\ref{fig:living},~\ref{fig:sw1}) and foliage (Fig.~\ref{fig:school}). NLOS gives the worst-case (highest) path loss, ensuring conservative, robust coverage design.
+\textbf{Why NLOS?} Most users lack LOS due to dense residential layouts (Fig.~\ref{fig:site_photos}b,d) and foliage (Fig.~\ref{fig:site_photos}c). NLOS gives the worst-case (highest) path loss, ensuring conservative, robust coverage design.
 
 %=============================================================================
 \section{Tentative Design and $R_{\max}$ Calculation}
@@ -442,7 +440,7 @@ Simulation for Site~1 $\rightarrow$ UT at $d_{\text{2D}} = 583$~m:
 \label{fig:h_matrix}
 \end{figure}
 
-The PDP shows the multipath structure arising from reflections off buildings (Figs.~\ref{fig:living},~\ref{fig:sw1}). The channel matrix $H$ exhibits spatial variation across antenna elements with a low condition number ($\approx$4~dB), indicating favorable MIMO spatial multiplexing conditions. The cross-polarised BS array provides additional diversity.
+The PDP shows the multipath structure arising from reflections off buildings (Fig.~\ref{fig:site_photos}b,d). The channel matrix $H$ exhibits spatial variation across antenna elements with a low condition number ($\approx$4~dB), indicating favorable MIMO spatial multiplexing conditions. The cross-polarised BS array provides additional diversity.
 
 %=============================================================================
 \appendix
