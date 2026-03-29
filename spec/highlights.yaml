@@ -1,0 +1,73 @@
+# ============================================================================
+# HIGHLIGHTS CONFIGURATION : 2D Image Cell Annotation
+# ============================================================================
+# This YAML defines specific "cells" or regions to be highlighted on a 2D image.
+# It supports both matrix-based (MIMO heatmap) and coordinate-based (Map) images.
+
+project_metadata:
+  project: "Radio Network Planning - Kagal"
+  town: "Kagal, Kolhapur, MH"
+  frequency: "1.8 GHz (LTE Band 3)"
+  last_updated: "2026-03-29"
+
+# 1. MIMO CHANNEL MATRIX HEATMAP (2x8 Grid)
+# ----------------------------------------------------------------------------
+heatmap_config:
+  target_image: "public/h_matrix_heatmap.png"
+  grid:
+    rows: 2
+    cols: 8
+  elements:
+    - id: "peak_gain"
+      cell: [0, 5]     # UT 1, BS Ant 6 (0-indexed)
+      color: "crimson"
+      label: "Max SNR"
+    - id: "multipath_null"
+      cell: [1, 2]     # UT 2, BS Ant 3
+      color: "royalblue"
+      label: "Deep Fade"
+
+# 2. RADIO NETWORK COVERAGE MAP (Kagal Town)
+# ----------------------------------------------------------------------------
+map_config:
+  target_image: "public/topview.png"
+  coordinate_system: "relative_px" # or "normalized_float"
+  cell_sites:
+    - id: "S1"
+      name: "Town Centre / Market"
+      location: [500, 450]  # [x, y] placeholders
+      radius: 700           # m
+      color: "#FF5733"      # Vivid Orange
+      type: "Microcell"
+    - id: "S2"
+      name: "NH-48 North Junction"
+      location: [300, 200]
+      radius: 850
+      color: "#33C1FF"      # Sky Blue
+      type: "Macrocell"
+    - id: "S3"
+      name: "NH-48 South / Bus Stand"
+      location: [320, 600]
+      radius: 800
+      color: "#33FF57"      # Spring Green
+      type: "Macrocell"
+    - id: "S4"
+      name: "East Residential"
+      location: [700, 500]
+      radius: 750
+      color: "#C133FF"      # Purple
+      type: "Macrocell"
+    - id: "S5"
+      name: "Dudhganga River Area"
+      location: [200, 400]
+      radius: 900
+      color: "#F1C40F"      # Sunflower Yellow
+      type: "Macrocell"
+
+# Global Annotation Theme
+# ----------------------------------------------------------------------------
+theme:
+  font_size: 14
+  line_thickness: 3
+  legend_position: "top_right"
+  transparency: 0.4
