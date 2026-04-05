@@ -491,7 +491,7 @@ In this section we simulate what the radio channel actually looks like at small 
     \item \textbf{Antenna setup}: We model a $2 \times 8$ MIMO link --- the base station has 4~columns of cross-polarised elements (8~total, spaced at $\lambda/2$), and the user has 2~elements. The user is placed 583~m from Site~1.
     \item \textbf{Propagation type}: NLOS, same as the planning phase.
     \item \textbf{Path loss}: The UMa NLOS model gives 126.7~dB at this distance. Shadow fading is drawn randomly from a normal distribution with 6~dB standard deviation.
-    \item \textbf{Large scale parameters}: Delay spread, angular spreads (ASD, ASA, ZSD, ZSA) are generated using correlated log-normal distributions~\cite{goldsmith2005}. We use Cholesky decomposition on the cross-correlation matrix from Table~7.5-6~\cite{3gpp_38901}.
+    \item \textbf{Large scale parameters}: Delay spread, angular spreads (ASD, ASA, ZSD, ZSA) are generated using correlated log-normal distributions. We use Cholesky decomposition on the cross-correlation matrix from Table~7.5-6~\cite{3gpp_38901}.
 \end{enumerate}
 
 \textbf{Steps 5--9} generate the multipath structure:
