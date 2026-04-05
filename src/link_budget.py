@@ -457,12 +457,15 @@ def main():
 
     # Approximate proposed cell locations and farthest-edge distances
     # Based on Kagal town layout
+    # Uniform macrocell radius R = 800 m for all sites
+    # (umbrella cell uses a different, larger radius — not part of macrocell layer)
+    R_uniform = 800  # [m]
     cells = [
-        ("Site 1: Town Center/Market",     700),
-        ("Site 2: NH-48 North Junction",    850),
-        ("Site 3: NH-48 South / Bus Stand", 800),
-        ("Site 4: East Residential",        750),
-        ("Site 5: Dudhganga River Area",    900),
+        ("Site 1: Town Center/Market",     R_uniform),
+        ("Site 2: NH-48 North Junction",    R_uniform),
+        ("Site 3: NH-48 South / Bus Stand", R_uniform),
+        ("Site 4: East Residential",        R_uniform),
+        ("Site 5: Dudhganga River Area",    R_uniform),
     ]
 
     print(f"   {'Cell':>35}  {'d_max [m]':>10}  {'PL [dB]':>8}  {'R_max':>8}  {'Check':>8}")
