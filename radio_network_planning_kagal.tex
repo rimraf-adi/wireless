@@ -103,7 +103,7 @@ Enrollment Number: }
   \begin{@twocolumnfalse}
   \maketitle
   \begin{abstract}
-This report walks through the radio network planning process for Kagal, a small town in Kolhapur district, Maharashtra. The goal is to design a working 4G LTE network operating on Band~3 (1800~MHz)~\cite{3gpp_36101}. We start with a ground-level site survey to understand the terrain and local building patterns, then work out a link budget that gives us $L_{\max} = 158$~dB and a maximum cell reach of about 3.68~km using the UMa NLOS path loss model from 3GPP TR~38.901~\cite{3gpp_38901}. Based on this, we lay out a \textbf{7-site macrocell grid} in a standard hexagonal ring pattern (1~centre + 6~surrounding) with a microcell overlay for high-traffic spots. The 7-cell layout ensures complete, gap-free coverage of the entire Kagal area including the NH-48 highway corridor, where macrocell overlap provides continuous coverage for fast-moving vehicles without needing a separate umbrella cell. In the second part, we simulate the fast-fading radio channel using the Clustered Delay Line (CDL) model from the same standard~\cite{3gpp_38901}, going through all twelve steps up to the final channel matrix~$H$. The Python scripts used for everything are attached at the end along with their sample outputs.
+This report walks through the radio network planning process for Kagal, a small town in Kolhapur district, Maharashtra. The goal is to design a working 4G LTE network operating on Band~3 (1800~MHz). We start with a ground-level site survey to understand the terrain and local building patterns, then work out a link budget that gives us $L_{\max} = 158$~dB and a maximum cell reach of about 3.68~km using the UMa NLOS path loss model from 3GPP TR~38.901~\cite{3gpp_38901}. Based on this, we lay out a \textbf{7-site macrocell grid} in a standard hexagonal ring pattern (1~centre + 6~surrounding) with a microcell overlay for high-traffic spots. The 7-cell layout ensures complete, gap-free coverage of the entire Kagal area including the NH-48 highway corridor, where macrocell overlap provides continuous coverage for fast-moving vehicles without needing a separate umbrella cell. In the second part, we simulate the fast-fading radio channel using the Clustered Delay Line (CDL) model from the same standard~\cite{3gpp_38901}, going through all twelve steps up to the final channel matrix~$H$. The Python scripts used for everything are attached at the end along with their sample outputs.
   \end{abstract}
   \end{@twocolumnfalse}
 ]
@@ -192,7 +192,7 @@ Dudhganga River zone & Low & Avoid cross-river signal paths where possible \\
 \label{sec:link_budget}
 %=============================================================================
 
-We are planning on Band~3 (1800~MHz), which is the most commonly used LTE band in India~\cite{3gpp_36101}. Table~\ref{tab:lte_parameters} lists the key parameters.
+We are planning on Band~3 (1800~MHz), which is the most commonly used LTE band in India. Table~\ref{tab:lte_parameters} lists the key parameters.
 
 \begin{table}[H]
 \centering
