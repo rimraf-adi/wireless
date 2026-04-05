@@ -274,11 +274,13 @@ Shadow fading standard deviation is 6.0~dB. Valid from 10~m to 5~km.
 + 21.3\log_{10}(f_c) - 0.3(h_{\text{UT}} - 1.5)
 \end{multline}
 
-\textbf{RMa NLOS} is used for the umbrella cell and for the open agricultural outskirts. The BS height there is 35~m. The full equation is in 3GPP TR~38.901~\cite{3gpp_38901} Table~7.4.1-1.
+\textbf{RMa NLOS} is evaluated for potential umbrella cells. According to 3GPP TR~38.901~\cite{3gpp_38901}, the Rural Macro (RMa) model is specifically calibrated for base stations mounted at 35~m heights covering wide, flat areas, making it the mathematically correct choice for highway umbrella cells (unlike UMa which assumes 25~m heights and urban clutter). The full equation is in 3GPP TR~38.901~\cite{3gpp_38901} Table~7.4.1-1.
 
 \subsection{Why These Models?}
 
 \textbf{UMa fits Kagal well} because the town centre buildings are around 10--15~m (Fig.~\ref{fig:site_photos}a) and our proposed 25~m tower height matches the UMa default. The cell sizes we need (under 3~km) comfortably sit inside UMa's validity range.
+
+\textbf{We evaluate RMa for completeness}, as any umbrella cells covering the open highway would require the 35~m towers and rural propagation characteristics that RMa is designed for. However, as shown in Section~\ref{sec:special_cells}, our final overlapping macrocell layout rendered a separate umbrella cell redundant.
 
 \textbf{We use NLOS} as the default because, looking at the photos, most users in the residential and commercial areas will not have line-of-sight to the tower. Using NLOS gives us the worst-case path loss, which makes our design more robust.
 
