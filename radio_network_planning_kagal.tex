@@ -14,6 +14,7 @@
 \usepackage{stfloats}
 \usepackage{tabularx}
 \usepackage{adjustbox}
+\usepackage{cite}
 
 \geometry{top=1.8cm, bottom=1.8cm, left=1.4cm, right=1.4cm, columnsep=0.5cm}
 
@@ -102,7 +103,7 @@ Enrollment Number: }
   \begin{@twocolumnfalse}
   \maketitle
   \begin{abstract}
-This report walks through the radio network planning process for Kagal, a small town in Kolhapur district, Maharashtra. The goal is to design a working 4G LTE network operating on Band~3 (1800~MHz). We start with a ground-level site survey to understand the terrain and local building patterns, then work out a link budget that gives us $L_{\max} = 158$~dB and a maximum cell reach of about 3.68~km using the UMa NLOS path loss model from 3GPP TR~38.901. Based on this, we lay out a \textbf{7-site macrocell grid} in a standard hexagonal ring pattern (1~centre + 6~surrounding) with a microcell overlay for high-traffic spots. The 7-cell layout ensures complete, gap-free coverage of the entire Kagal area including the NH-48 highway corridor, where macrocell overlap provides continuous coverage for fast-moving vehicles without needing a separate umbrella cell. In the second part, we simulate the fast-fading radio channel using the Clustered Delay Line (CDL) model from the same standard, going through all twelve steps up to the final channel matrix~$H$. The Python scripts used for everything are attached at the end along with their sample outputs.
+This report walks through the radio network planning process for Kagal, a small town in Kolhapur district, Maharashtra. The goal is to design a working 4G LTE network operating on Band~3 (1800~MHz)~\cite{3gpp_36101}. We start with a ground-level site survey to understand the terrain and local building patterns, then work out a link budget that gives us $L_{\max} = 158$~dB and a maximum cell reach of about 3.68~km using the UMa NLOS path loss model from 3GPP TR~38.901~\cite{3gpp_38901}. Based on this, we lay out a \textbf{7-site macrocell grid} in a standard hexagonal ring pattern (1~centre + 6~surrounding) with a microcell overlay for high-traffic spots. The 7-cell layout ensures complete, gap-free coverage of the entire Kagal area including the NH-48 highway corridor, where macrocell overlap provides continuous coverage for fast-moving vehicles without needing a separate umbrella cell. In the second part, we simulate the fast-fading radio channel using the Clustered Delay Line (CDL) model from the same standard~\cite{3gpp_38901}, going through all twelve steps up to the final channel matrix~$H$. The Python scripts used for everything are attached at the end along with their sample outputs.
   \end{abstract}
   \end{@twocolumnfalse}
 ]
@@ -115,7 +116,7 @@ This report walks through the radio network planning process for Kagal, a small 
 
 \subsection{About the Location}
 
-Kagal sits at 16\textdegree35$'$N, 74\textdegree19$'$E, roughly 16~km south of Kolhapur city, at an elevation of about 553~m above sea level. The town has a population of around 49,000 people spread across 8--10~km$^2$. Most buildings are 2--3 storeys tall (6--10~m), which is fairly typical of smaller towns in this part of Maharashtra.
+Kagal sits at 16\textdegree35$'$N, 74\textdegree19$'$E, roughly 16~km south of Kolhapur city, at an elevation of about 553~m above sea level. The town has a population of around 49,000 people~\cite{census_india} spread across 8--10~km$^2$. Most buildings are 2--3 storeys tall (6--10~m), which is fairly typical of smaller towns in this part of Maharashtra.
 
 \begin{figure}[H]
 \centering
@@ -191,7 +192,7 @@ Dudhganga River zone & Low & Avoid cross-river signal paths where possible \\
 \label{sec:link_budget}
 %=============================================================================
 
-We are planning on Band~3 (1800~MHz), which is the most commonly used LTE band in India. Table~\ref{tab:lte_parameters} lists the key parameters.
+We are planning on Band~3 (1800~MHz), which is the most commonly used LTE band in India~\cite{3gpp_36101}. Table~\ref{tab:lte_parameters} lists the key parameters.
 
 \begin{table}[H]
 \centering
@@ -234,7 +235,7 @@ This is the number we will use for all the planning that follows.
 \label{sec:pathloss_models}
 %=============================================================================
 
-All the path loss equations used here come from \textbf{3GPP TR~38.901, Table~7.4.1-1}. Frequency is in GHz, distances in metres.
+All the path loss equations used here come from \textbf{3GPP TR~38.901}~\cite{3gpp_38901}, Table~7.4.1-1. Frequency is in GHz, distances in metres.
 
 \subsection{UMa NLOS --- Our Main Model}
 
@@ -273,7 +274,7 @@ Shadow fading standard deviation is 6.0~dB. Valid from 10~m to 5~km.
 + 21.3\log_{10}(f_c) - 0.3(h_{\text{UT}} - 1.5)
 \end{multline}
 
-\textbf{RMa NLOS} is used for the umbrella cell and for the open agricultural outskirts. The BS height there is 35~m. The full equation is in 3GPP TR~38.901 Table~7.4.1-1.
+\textbf{RMa NLOS} is used for the umbrella cell and for the open agricultural outskirts. The BS height there is 35~m. The full equation is in 3GPP TR~38.901~\cite{3gpp_38901} Table~7.4.1-1.
 
 \subsection{Why These Models?}
 
@@ -288,7 +289,7 @@ Shadow fading standard deviation is 6.0~dB. Valid from 10~m to 5~km.
 
 \subsection{D/R Ratio and Initial Estimate}
 
-In a hexagonal cell layout with frequency reuse factor $N$, the ratio of co-channel distance to cell radius is:
+In a hexagonal cell layout with frequency reuse factor $N$, the ratio of co-channel distance to cell radius is~\cite{rappaport2024}:
 \begin{equation}
 \frac{D}{R} = \sqrt{3N}
 \end{equation}
@@ -483,14 +484,14 @@ Microcell ($\times$2) & 10 & 200--300 & UMi NLOS & High-traffic spots \\
 \label{sec:part2}
 %=============================================================================
 
-In this section we simulate what the radio channel actually looks like at small time scales, following the step-by-step procedure in 3GPP TR~38.901, Section~7.5. We use the CDL channel model with UMa NLOS parameters.
+In this section we simulate what the radio channel actually looks like at small time scales, following the step-by-step procedure in 3GPP TR~38.901~\cite{3gpp_38901}, Section~7.5. We use the CDL channel model with UMa NLOS parameters.
 
 \textbf{Steps 1--4} set up the large-scale picture:
 \begin{enumerate}
     \item \textbf{Antenna setup}: We model a $2 \times 8$ MIMO link --- the base station has 4~columns of cross-polarised elements (8~total, spaced at $\lambda/2$), and the user has 2~elements. The user is placed 583~m from Site~1.
     \item \textbf{Propagation type}: NLOS, same as the planning phase.
     \item \textbf{Path loss}: The UMa NLOS model gives 126.7~dB at this distance. Shadow fading is drawn randomly from a normal distribution with 6~dB standard deviation.
-    \item \textbf{Large scale parameters}: Delay spread, angular spreads (ASD, ASA, ZSD, ZSA) are generated using correlated log-normal distributions. We use Cholesky decomposition on the cross-correlation matrix from Table~7.5-6.
+    \item \textbf{Large scale parameters}: Delay spread, angular spreads (ASD, ASA, ZSD, ZSA) are generated using correlated log-normal distributions~\cite{goldsmith2005}. We use Cholesky decomposition on the cross-correlation matrix from Table~7.5-6~\cite{3gpp_38901}.
 \end{enumerate}
 
 \textbf{Steps 5--9} generate the multipath structure:
@@ -657,5 +658,8 @@ Results:
 Saved: public/pdp_plot.png
 Saved: public/h_matrix_heatmap.png
 \end{lstlisting}
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
 
 \end{document}
