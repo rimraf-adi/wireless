@@ -239,9 +239,9 @@ All the path loss equations used here come from \textbf{3GPP TR~38.901}~\cite{3g
 
 \subsection{UMa NLOS --- Our Main Model}
 
-For UMa, the effective heights are computed by subtracting $h_E = 1$~m from both the BS and UE heights. This gives us the breakpoint distance:
+For UMa, the effective heights are computed by subtracting $h_E = 1$~m from both the BS and UE heights, giving $h'_{\text{BS}} = 24$~m and $h'_{\text{UT}} = 0.5$~m. This gives us the correct breakpoint distance per Table 7.4.1-1 Note 1:
 \begin{equation}
-d'_{\text{BP}} = \frac{2\pi\, h'_{\text{BS}}\, h'_{\text{UT}}\, f_c}{c} = 452.4 \text{ m}
+d'_{\text{BP}} = 4 \frac{h'_{\text{BS}}\, h'_{\text{UT}}\, f_c}{c} = 288 \text{ m}
 \end{equation}
 
 We also need the UMa LOS formula as a lower bound:
@@ -563,7 +563,7 @@ The PDP reflects the kind of multipath you would expect from reflections off the
 
 --- UMa Breakpoint Distance ---
   h'_BS = 24.0 m,  h'_UT = 0.5 m
-  d'_BP = 452.4 m
+  d'_BP = 288.0 m
 
 --- Maximum Cell Radius ---
   UMa NLOS:  R_max = 3680 m (3.68 km)

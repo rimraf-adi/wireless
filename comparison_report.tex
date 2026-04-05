@@ -219,7 +219,7 @@ $\sigma_{\text{SF}}$ (UMa NLOS) & 6.0~dB & Not stated & Not stated & 6~dB (menti
 UMi NLOS (microcell) & \uniq{Yes, presented} & Not presented & Not presented & Not presented \\
 RMa NLOS (umbrella) & Referenced & \uniq{Used for 13 umbrella cells} & Not presented & Not presented \\
 \midrule
-Breakpoint $d'_{BP}$ & \diff{452.4~m} & \diff{452.4~m} & Not computed & \diff{900~m} \\
+Breakpoint $d'_{BP}$ & \diff{288~m} & \diff{(Implicit)} & Not computed & \diff{900~m} \\
 UMa LOS formula & Fully stated (2 regimes) & Fully stated & Not stated & Fully stated (2 regimes) \\
 NLOS justification & Dense residential NLOS photos & Conservative worst-case & Conservative worst-case & Semi-urban environment \\
 \bottomrule
@@ -229,7 +229,7 @@ NLOS justification & Dense residential NLOS photos & Conservative worst-case & C
 \noindent\textbf{Observations:}
 \begin{itemize}
     \item All four use the same UMa NLOS formula from 3GPP TR~38.901.
-    \item \textcolor{accentred}{\textbf{Breakpoint distance discrepancy:}} Kagal and Ralegaon compute $d'_{BP} = 452.4$~m (using effective heights $h'_{BS} = 24$~m, $h'_{UT} = 0.5$~m as per 3GPP TR~38.901). \textbf{Sakri computes $d_{BP} = 900$~m} using the raw heights ($h_{BS} = 25$~m, $h_{UT} = 1.5$~m) without the 3GPP effective height correction. This is a \textbf{methodological error} --- 3GPP TR~38.901 defines $h'_{BS} = h_{BS} - h_E$ and $h'_{UT} = h_{UT} - h_E$ with $h_E = 1$~m for UMa, giving $d'_{BP} = 452.4$~m, not 900~m.
+    \item \textcolor{accentred}{\textbf{Breakpoint distance discrepancy:}} Kagal correctly computes $d'_{BP} = 288$~m (using the 3GPP multiplier 4 and effective heights $h'_{BS} = 24$~m, $h'_{UT} = 0.5$~m as per 3GPP TR~38.901). \textbf{Sakri computes $d_{BP} = 900$~m} using the raw heights ($h_{BS} = 25$~m, $h_{UT} = 1.5$~m) without the 3GPP effective height correction. This is a \textbf{methodological error} --- 3GPP TR~38.901 defines $h'_{BS} = h_{BS} - h_E$ and $h'_{UT} = h_{UT} - h_E$ with $h_E = 1$~m for UMa, giving $d'_{BP} = 288$~m, not 900~m.
     \item \textbf{Kagal} is the only report that explicitly presents the UMi NLOS model for microcell planning.
     \item \textbf{Sakri} uniquely takes $\text{PL} = \max(\text{PL}_{\text{LOS}}, \text{PL}_{\text{NLOS}})$ for final path loss evaluation, which is correct per the standard.
 \end{itemize}
@@ -472,7 +472,7 @@ Channel Sim Code & Separate modular & Single combined & Single combined & Not sh
 \rowcolor{matchcolor} $h_{\text{BS}}$ (macro) & 25~m & 25~m & 25~m & 25~m \\
 \rowcolor{matchcolor} $h_{\text{UT}}$ & 1.5~m & 1.5~m & 1.5~m & 1.5~m \\
 \rowcolor{diffcolor} $L_{\max}$ & 158~dB & 158~dB & 133~dB & 140~dB \\
-\rowcolor{diffcolor} $d'_{\text{BP}}$ & 452.4~m & 452.4~m & (implicit) & \textcolor{accentred}{900~m (error)} \\
+\rowcolor{diffcolor} $d'_{\text{BP}}$ & 288~m & (implicit) & (implicit) & \textcolor{accentred}{900~m (error)} \\
 \rowcolor{diffcolor} $R_{\max}$ (UMa NLOS) & 3680~m & 3680~m & 843~m & Not computed \\
 \rowcolor{diffcolor} Reuse Factor $N$ & 1 & 7 & 7 & 7 \\
 \rowcolor{diffcolor} $D/R$ & 1.732 & 4.583 & 4.583 & 4.583 \\
@@ -570,7 +570,7 @@ Channel Sim Code & Separate modular & Single combined & Single combined & Not sh
 \end{minipage} &
 \begin{minipage}[t]{\linewidth}
 \begin{itemize}[nosep]
-\item \textcolor{accentred}{Breakpoint distance error (900~m vs.\ correct 452.4~m)}
+\item \textcolor{accentred}{Breakpoint distance error (900~m vs.\ correct 288~m)}
 \item No antenna gain/cable loss in link budget
 \item No $R_{\max}$ computation
 \item No MIMO channel matrix
@@ -598,7 +598,7 @@ Channel Sim Code & Separate modular & Single combined & Single combined & Not sh
 \begin{center}
 \fcolorbox{accentred}{uniquecolor}{%
 \begin{minipage}{0.9\textwidth}
-\textbf{Technical Error:} The Sakri report computes the breakpoint distance as $d_{BP} = \frac{4 h_{BS} h_{UT} f_c}{c} = \frac{4 \times 25 \times 1.5 \times 1.8 \times 10^9}{3 \times 10^8} = 900$~m. However, 3GPP TR~38.901 specifies that for UMa scenarios, \textbf{effective heights} must be used: $h'_{BS} = h_{BS} - h_E$ and $h'_{UT} = h_{UT} - h_E$ where $h_E = 1$~m. This gives $h'_{BS} = 24$~m and $h'_{UT} = 0.5$~m, yielding $d'_{BP} = 452.4$~m. The Sakri report uses the wrong heights, overestimating the breakpoint by a factor of $\approx$2. While this does not affect the NLOS path loss calculation (which does not depend on $d_{BP}$), it leads to incorrect LOS/NLOS regime selection near the breakpoint.
+\textbf{Technical Error:} The Sakri report computes the breakpoint distance as $d_{BP} = \frac{4 h_{BS} h_{UT} f_c}{c} = \frac{4 \times 25 \times 1.5 \times 1.8 \times 10^9}{3 \times 10^8} = 900$~m. However, 3GPP TR~38.901 specifies that for UMa scenarios, \textbf{effective heights} must be used: $h'_{BS} = h_{BS} - h_E$ and $h'_{UT} = h_{UT} - h_E$ where $h_E = 1$~m. This gives $h'_{BS} = 24$~m and $h'_{UT} = 0.5$~m, yielding $d'_{BP} = 288$~m. The Sakri report uses the wrong heights, overestimating the breakpoint by a factor of $\approx$3. While this does not affect the NLOS path loss calculation (which does not depend on $d_{BP}$), it leads to incorrect LOS/NLOS regime selection near the breakpoint.
 \end{minipage}
 }
 \end{center}

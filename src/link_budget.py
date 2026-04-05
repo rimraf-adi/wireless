@@ -81,7 +81,7 @@ def uma_breakpoint_distance():
     """
     UMa breakpoint distance (Table 7.4.1-1 Note 1).
 
-    d'_BP = 2π · h'_BS · h'_UT · f_c / c
+    d'_BP = 4 · h'_BS · h'_UT · f_c / c
 
     Effective heights for UMa: h_E = 1.0 m
       h'_BS = h_BS - h_E
@@ -91,7 +91,7 @@ def uma_breakpoint_distance():
     h_BS_eff = h_BS - h_E   # 24.0 m
     h_UT_eff = h_UT - h_E   #  0.5 m
 
-    d_BP = 2 * math.pi * h_BS_eff * h_UT_eff * f_c_hz / c
+    d_BP = 4 * h_BS_eff * h_UT_eff * f_c_hz / c
     return d_BP, h_BS_eff, h_UT_eff
 
 
@@ -161,7 +161,7 @@ def pl_umi_los(d_3D, h_bs_umi=10.0):
     h_E = 1.0
     h_bs_eff = h_bs_umi - h_E
     h_ut_eff = h_UT - h_E
-    d_BP = 2 * math.pi * h_bs_eff * h_ut_eff * f_c_hz / c
+    d_BP = 4 * h_bs_eff * h_ut_eff * f_c_hz / c
     delta_h = h_bs_umi - h_UT
     d_2D = math.sqrt(max(d_3D**2 - delta_h**2, 0))
 
@@ -212,7 +212,7 @@ def pl_rma_los(d_3D, h_bs_rma=35.0):
     σ_SF = 6.0 dB (LOS), 8.0 dB (NLOS)
     """
     h = h_building
-    d_BP_rma = 2 * math.pi * h_bs_rma * h_UT * f_c_hz / c
+    d_BP_rma = 4 * h_bs_rma * h_UT * f_c_hz / c
     delta_h = h_bs_rma - h_UT
     d_2D = math.sqrt(max(d_3D**2 - delta_h**2, 0))
 
