@@ -311,7 +311,9 @@ $N$ & $D/R$ & $D$ ($R{=}1$~km) & Interference Level \\
 \end{tabular}}%
 \end{table}
 
-Since LTE uses OFDMA with frequency reuse 1, we have $D/R = \sqrt{3} \approx 1.732$. If we start with $R \approx 1$~km, each hex cell covers about $2.598$~km$^2$. For an 8~km$^2$ town, that means 4~cells minimum. However, with smaller cells ($R = 800$~m), each hex covers $2.598 \times 0.8^2 \approx 1.66$~km$^2$, so we need at least 5--6~cells for area coverage alone. We go with \textbf{7 cells} arranged in a standard hexagonal ring (1~centre + 6~surrounding) to guarantee full, gap-free coverage with proper overlap for handovers.
+Since LTE is based on Orthogonal Frequency-Division Multiple Access (OFDMA), the network architecture fundamentally supports a universal frequency reuse factor of $N=1$~\cite{dahlman2011}. Instead of physically separating frequencies like in GSM, LTE manages co-channel interference at cell edges using Inter-Cell Interference Coordination (ICIC) and fractional frequency reuse~\cite{dahlman2011}. This allows every cell to transmit on the full 10~MHz bandwidth simultaneously, maximizing spectral efficiency.
+
+Because $N=1$, we have $D/R = \sqrt{3} \approx 1.732$. If we start with $R \approx 1$~km, each hex cell covers about $2.598$~km$^2$. For an 8~km$^2$ town, that means 4~cells minimum. However, with smaller cells ($R = 800$~m), each hex covers $2.598 \times 0.8^2 \approx 1.66$~km$^2$, so we need at least 5--6~cells for area coverage alone. We go with \textbf{7 cells} arranged in a standard hexagonal ring (1~centre + 6~surrounding) to guarantee full, gap-free coverage with proper overlap for handovers.
 
 \subsection{How Far Can Each Cell Reach?}
 

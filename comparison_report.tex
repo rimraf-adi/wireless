@@ -16,7 +16,7 @@
 \usepackage{multicol}
 \usepackage{array}
 
-\geometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+\geometry{top=1.8cm, bottom=1.8cm, left=1.5cm, right=1.5cm}
 
 % Compact list spacing
 \setlist{nosep, leftmargin=*}
@@ -36,7 +36,7 @@
 \newcommand{\refsec}[1]{\textit{(Ref: #1)}}
 
 \title{\textbf{Comparative Analysis of Radio Network Planning Reports}\\[6pt]
-\Large Kagal (Kinjawadekar) \quad vs.\quad Ralegaon (Chaudhari) \quad vs.\quad Pombhurna (Patil)\\[8pt]
+\Large Kagal \quad vs.\quad Ralegaon \quad vs.\quad Pombhurna \quad vs.\quad Sakri\\[8pt]
 \large 4G LTE Cellular Network Design --- 3GPP TR~38.901 V18.0.0}
 \author{Auto-Generated Comparison Report}
 \date{\today}
@@ -46,14 +46,15 @@
 \thispagestyle{empty}
 
 \begin{abstract}
-This document presents a section-by-section comparison of three independently authored radio network planning reports for the same assignment.
-All three reports design a 4G LTE network for a different town in Maharashtra using 3GPP TR~38.901 V18.0.0 and then simulate small-scale fading via the Clustered Delay Line (CDL) channel model.
+This document presents a section-by-section comparison of four independently authored radio network planning reports for the same assignment.
+All four reports design a 4G LTE network for a different town in Maharashtra using 3GPP TR~38.901 V18.0.0 and then simulate small-scale fading via the Clustered Delay Line (CDL) channel model.
 The towns are:
 \textbf{Kagal} (Kolhapur district) by Aditya Kinjawadekar,
-\textbf{Ralegaon} (Yavatmal district) by Atharva S Chaudhari, and
-\textbf{Pombhurna} (Chandrapur district) by Prasad Patil (BT23ECE096).
+\textbf{Ralegaon} (Yavatmal district) by Atharva S Chaudhari,
+\textbf{Pombhurna} (Chandrapur district) by Prasad Patil (BT23ECE096), and
+\textbf{Sakri} (Dhule district) by Tanmay Lakhambare (BT23ECE121).
 Each section highlights \colorbox{matchcolor}{agreements}, \colorbox{diffcolor}{disagreements}, and \colorbox{uniquecolor}{unique features}
-across the three reports.
+across the four reports.
 \end{abstract}
 
 \tableofcontents
@@ -69,27 +70,28 @@ across the three reports.
 \caption{Report Metadata Comparison}
 \label{tab:metadata}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}p{4cm}p{4cm}p{4.5cm}p{4.5cm}@{}}
+\begin{tabular}{@{}p{3.5cm}p{3.5cm}p{3.5cm}p{3.5cm}p{3.5cm}@{}}
 \toprule
-\textbf{Attribute} & \textbf{Kagal (Kinjawadekar)} & \textbf{Ralegaon (Chaudhari)} & \textbf{Pombhurna (Patil)} \\
+\textbf{Attribute} & \textbf{Kagal (Kinjawadekar)} & \textbf{Ralegaon (Chaudhari)} & \textbf{Pombhurna (Patil)} & \textbf{Sakri (Lakhambare)} \\
 \midrule
-Town / Area & Kagal, Kolhapur & Ralegaon, Yavatmal & Pombhurna, Chandrapur \\
-Population (est.) & $\approx$49,000 (2026) & $\approx$18,500 (2026 est. from 2011 census of 13,766) & $\approx$20,000--25,000 (2011 census) \\
-Town Area & $\approx$8--10~km$^2$ & 18.2~km$^2$ & $\approx$12~km$^2$ \\
-Elevation & 553~m & 248~m & 230--250~m \\
-Document Format & \LaTeX{} 2-column, 10pt & PDF, single-column & PDF, single-column \\
-Total Pages (approx.) & $\sim$9 (body) + appendix & 17 pages & 16 pages \\
-Appendix Code? & Yes (2 Python listings) & No separate appendix (code in body) & Yes (code in body, Sec.~4) \\
-Figures Included? & 6 site photos + 3 simulation plots & 2 maps & 1 site analysis map \\
+Town / Area & Kagal, Kolhapur & Ralegaon, Yavatmal & Pombhurna, Chandrapur & Sakri, Dhule \\
+Population (est.) & $\approx$49,000 (2026) & $\approx$18,500 (2026 est.) & $\approx$20--25,000 (2011) & $\approx$32,400 (2026 est. from 21,764 in 2011) \\
+Town Area & $\approx$8--10~km$^2$ & 18.2~km$^2$ & $\approx$12~km$^2$ & $\approx$6.75~km$^2$ \\
+Elevation & 553~m & 248~m & 230--250~m & Not stated \\
+Document Format & \LaTeX{} 2-column, 10pt & PDF, single-column & PDF, single-column & \LaTeX{} 2-column \\
+Total Pages (approx.) & $\sim$9 (body) + appendix & 17 pages & 16 pages & 13 pages \\
+Appendix Code? & Yes (2 Python listings) & No separate appendix & Yes (code in body) & No separate appendix \\
+Figures Included? & 6 site photos + 3 sim plots & 2 maps & 1 site analysis map & 14 figures (satellite, maps, site photos, network diagrams) \\
 \bottomrule
 \end{tabular}}%
 \end{table}
 
 \noindent\textbf{Key Observations:}
 \begin{itemize}
-    \item Kagal report uses professional \LaTeX{} two-column formatting; the other two are single-column PDF reports.
-    \item Kagal includes extensive site photography (street-level NLOS evidence); Ralegaon includes geographic/KML maps; Pombhurna includes a schematic site analysis diagram.
-    \item All three cover the same two-part assignment: Part~1 (network planning) and Part~2 (channel matrix / CDL simulation).
+    \item Kagal uses professional \LaTeX{} two-column formatting; Sakri also uses \LaTeX{} two-column; the other two are single-column PDF reports.
+    \item Kagal includes street-level site photography; Ralegaon includes KML maps; Pombhurna includes a schematic; Sakri includes extensive figures (satellite views, market, bus stand, river, schools, hospital, and all network iteration diagrams).
+    \item Sakri is the only report that includes figures for every step of the network design iteration process.
+    \item All four cover the same two-part assignment: Part~1 (network planning) and Part~2 (channel matrix / CDL simulation).
 \end{itemize}
 
 %=============================================================================
@@ -102,30 +104,29 @@ Figures Included? & 6 site photos + 3 simulation plots & 2 maps & 1 site analysi
 \caption{Site Analysis Comparison}
 \label{tab:site_analysis}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}p{3.5cm}p{4cm}p{4.5cm}p{4.5cm}@{}}
+\begin{tabular}{@{}p{3cm}p{3.5cm}p{3.5cm}p{3.5cm}p{3.5cm}@{}}
 \toprule
-\textbf{Feature} & \textbf{Kagal} & \textbf{Ralegaon} & \textbf{Pombhurna} \\
+\textbf{Feature} & \textbf{Kagal} & \textbf{Ralegaon} & \textbf{Pombhurna} & \textbf{Sakri} \\
 \midrule
-Coordinates & 16\textdegree35$'$N, 74\textdegree19$'$E & 20\textdegree25$'$0$''$N, 78\textdegree31$'$0$''$E & Near Chandrapur (approx. 20\textdegree N, 79\textdegree E) \\
-Terrain Type & Semi-urban, 2--3 storey buildings & Hot tropical, cotton farming land & Flat to gently undulating, Deccan Plateau \\
-Key Highway & NH-48 (6-lane, western edge) & State Highway (diagonal through town) & NH-930 (formerly SH-263, through town core) \\
-Key Water Body & Dudhganga River & None prominent & Penganga River (3--5~km SW) \\
-Commercial Area & Market / town centre & Main market \& ginning mills & Main bazaar along NH-930 \\
-Building Heights & 6--10~m (2--3 storeys) & 6--9~m (1--3 storeys) & 2--3 floors masonry (central), 1 floor (periphery) \\
+Coordinates & 16\textdegree35$'$N, 74\textdegree19$'$E & 20\textdegree25$'$N, 78\textdegree31$'$E & Near 20\textdegree N, 79\textdegree E & Sakri, Dhule (approx. 20\textdegree56$'$N, 74\textdegree18$'$E) \\
+Terrain Type & Semi-urban, 2--3 storey & Hot tropical, cotton land & Flat, Deccan Plateau & Residential + agricultural fields \\
+Key Highway & NH-48 (6-lane, western edge) & State Highway (diagonal) & NH-930 (through core) & NH-53 Surat--Kolkata (near town) \\
+Key Water Body & Dudhganga River & None prominent & Penganga River (3--5~km SW) & Panzara River (southern boundary) \\
+Commercial Area & Market / town centre & Main market \& mills & Main bazaar along NH-930 & Markets, hospitals, bus stand along Sakri Road \\
+Building Heights & 6--10~m (2--3 storeys) & 6--9~m (1--3 storeys) & 2--3 floors (centre) & Not explicitly stated \\
 \midrule
-\textbf{Coverage Zones} & 6 identified (Highway, River, Market, Bus Stand, Residential, Agricultural) & 4 identified (Market/Core, Ginning Mills, Highway, Agricultural) & 5 identified (Market/NH-930, Central Res., N\&S Res., East Fringe, West/Penganga) \\
-Visual Evidence & 4 street-level photos & KML-based geographic maps & Satellite imagery + schematic map \\
+\textbf{Coverage Zones} & 6 identified & 4 identified & 5 identified & 3 primary: macrocell, microcell (market/bus), umbrella (highway) \\
+Visual Evidence & 4 street-level photos & KML maps & Satellite + schematic & Satellite + 7 site photos (market, bus, river, schools, hospitals) \\
 \bottomrule
 \end{tabular}}%
 \end{table}
 
 \noindent\textbf{Differences:}
 \begin{itemize}
-    \item \textbf{Kagal} is the most densely populated ($\approx$49k) and smallest area ($\approx$8--10~km$^2$), leading to a compact network.
-    \item \textbf{Ralegaon} has the largest area (18.2~km$^2$) but smallest population ($\approx$18.5k), resulting in a sprawling design with 13 umbrella cells.
-    \item \textbf{Pombhurna} falls between the two in density and area.
-    \item Kagal is the only report providing street-level photographs as propagation environment evidence.
-    \item Ralegaon uniquely uses exact KML/GPS waypoints for site placement.
+    \item \textbf{Kagal} is the most densely populated ($\approx$49k) and has the smallest area ($\approx$8--10~km$^2$).
+    \item \textbf{Ralegaon} has the largest area (18.2~km$^2$) but smallest population ($\approx$18.5k).
+    \item \textbf{Sakri} has the smallest coverage area ($\approx$6.75~km$^2$, defined by Panzara River and NH-53 boundary) and a moderate population ($\approx$32.4k). It explicitly measures the perimeter (10.11~km), max horizontal extent (4097~m), and highway length within coverage (5626~m).
+    \item Kagal and Sakri both provide street-level photographs; Ralegaon uses KML waypoints; Pombhurna uses schematic diagrams.
 \end{itemize}
 
 %=============================================================================
@@ -140,24 +141,24 @@ This is the most critical section for comparison, as the link budget directly de
 \caption{System Parameters Comparison}
 \label{tab:system_params}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}p{4.5cm}ccc@{}}
+\begin{tabular}{@{}p{4cm}cccc@{}}
 \toprule
-\textbf{Parameter} & \textbf{Kagal} & \textbf{Ralegaon} & \textbf{Pombhurna} \\
+\textbf{Parameter} & \textbf{Kagal} & \textbf{Ralegaon} & \textbf{Pombhurna} & \textbf{Sakri} \\
 \midrule
-Carrier Frequency $f_c$ & \same{1800~MHz} & \same{1800~MHz} & \same{1800~MHz} \\
-Transmit Power $P_t$ & \same{46~dBm} & \same{46~dBm} & \same{46~dBm} \\
-BS Antenna Gain $G_{\text{ant}}$ & \diff{18~dBi} & \diff{18~dBi (Table 3) } & \diff{17~dBi} \\
-Cable / Feeder Loss & \diff{2~dB} & \diff{2~dB} & \diff{3~dB} \\
-Rx Sensitivity $P_{r,\min}$ & \diff{$-$104~dBm (given)} & \diff{$-$104~dBm (given)} & \diff{$-$94~dBm (computed)} \\
-UE Antenna Gain & --- (not used) & --- (not used) & \uniq{0~dBi (explicit)} \\
-Body Loss & --- (not used) & --- (not used) & \uniq{3~dB} \\
-Noise Figure & --- (not used) & --- (not used) & \uniq{7~dB} \\
-Indoor Penetration Loss & --- (not used) & --- (not used) & \uniq{10~dB} \\
-Shadow Fading Margin $L_{\text{sf}}$ & \same{8~dB} & \same{8~dB} & \same{8~dB} \\
-BS Height $h_{\text{BS}}$ & \same{25~m} & \same{25~m} & \same{25~m} \\
-UT Height $h_{\text{UT}}$ & \same{1.5~m} & \same{1.5~m} & \same{1.5~m} \\
-Bandwidth & --- (not specified) & --- (not specified) & \uniq{10~MHz} \\
-Min SNR & --- (not specified) & --- (not specified) & \uniq{3~dB (QPSK 1/3)} \\
+Carrier Frequency $f_c$ & \same{1800~MHz} & \same{1800~MHz} & \same{1800~MHz} & \same{1800~MHz} \\
+Transmit Power $P_t$ & \same{46~dBm} & \same{46~dBm} & \same{46~dBm} & \same{46~dBm} \\
+BS Antenna Gain $G_{\text{ant}}$ & \diff{18~dBi} & \diff{18~dBi} & \diff{17~dBi} & \diff{Not in link budget} \\
+Cable / Feeder Loss & \diff{2~dB} & \diff{2~dB} & \diff{3~dB} & \diff{Not in link budget} \\
+Rx Sensitivity $P_{r,\min}$ & \diff{$-$104~dBm} & \diff{$-$104~dBm} & \diff{$-$94~dBm (computed)} & \diff{$-$104~dBm} \\
+UE Antenna Gain & --- & --- & \uniq{0~dBi} & --- \\
+Body Loss & --- & --- & \uniq{3~dB} & --- \\
+Noise Figure & --- & --- & \uniq{7~dB} & --- \\
+Indoor Penetration Loss & --- & --- & \uniq{10~dB} & --- \\
+Shadow Fading Margin $L_{\text{sf}}$ & \diff{8~dB} & \diff{8~dB} & \diff{8~dB} & \diff{10~dB} \\
+BS Height $h_{\text{BS}}$ & \same{25~m} & \same{25~m} & \same{25~m} & \same{25~m} \\
+UT Height $h_{\text{UT}}$ & \same{1.5~m} & \same{1.5~m} & \same{1.5~m} & \same{1.5~m} \\
+Bandwidth & --- & --- & \uniq{10~MHz} & --- \\
+Min SNR & --- & --- & \uniq{3~dB (QPSK 1/3)} & --- \\
 \bottomrule
 \end{tabular}}%
 \end{table}
@@ -169,26 +170,31 @@ Min SNR & --- (not specified) & --- (not specified) & \uniq{3~dB (QPSK 1/3)} \\
 \caption{Link Budget Comparison --- $L_{\max}$ Derivation}
 \label{tab:lmax}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}p{5cm}p{4cm}p{4cm}p{4.5cm}@{}}
+\begin{tabular}{@{}p{4cm}p{3.5cm}p{3.5cm}p{3.5cm}p{3.5cm}@{}}
 \toprule
-\textbf{Step} & \textbf{Kagal} & \textbf{Ralegaon} & \textbf{Pombhurna} \\
+\textbf{Step} & \textbf{Kagal} & \textbf{Ralegaon} & \textbf{Pombhurna} & \textbf{Sakri} \\
 \midrule
-Simple $L_{\max}$ & $46 - (-104) = 150$~dB & $46 - (-104) = 150$~dB & Not computed separately \\
+Simple $L_{\max}$ & $46 - (-104) = 150$~dB & $46 - (-104) = 150$~dB & Not computed separately & $46 - (-104) = 150$~dB \\
 \midrule
-Extended formula & $P_t + G_{\text{ant}} - L_{\text{cable}} - P_{r,\min} - L_{\text{sf}}$ & $P_t + G_{\text{ant}} - L_{\text{cable}} - P_{r,\min} - L_{\text{sf}}$ & $\text{EIRP} + G_{\text{UE}} - L_{\text{body}} - M_{\text{sf}} - L_{\text{pen}} - P_{r,\min}$ \\
+Extended formula & $P_t + G_{\text{ant}} - L_{\text{cable}} - P_{r,\min} - L_{\text{sf}}$ & Same & $\text{EIRP} + G_{\text{UE}} - L_{\text{body}} - M_{\text{sf}} - L_{\text{pen}} - P_{r,\min}$ & $L_{\max} = P_t - P_{r,\min} - L_{\text{sf}}$ \\
 \midrule
-Substitution & $46 + 18 - 2 + 104 - 8$ & $46 + 18 - 2 + 104 - 8$ & $60 + 0 - 3 - 8 - 10 - (-94)$ \\
+Substitution & $46 + 18 - 2 + 104 - 8$ & Same & $60 + 0 - 3 - 8 - 10 - (-94)$ & $150 - 10$ \\
 \midrule
-\textbf{Result $L_{\max}$} & \diff{\textbf{158~dB}} & \diff{\textbf{158~dB}} & \diff{\textbf{133~dB}} \\
+\textbf{Result $L_{\max}$} & \diff{\textbf{158~dB}} & \diff{\textbf{158~dB}} & \diff{\textbf{133~dB}} & \diff{\textbf{140~dB}} \\
 \bottomrule
 \end{tabular}}%
 \end{table}
 
-\noindent\textbf{Critical Difference:}
+\noindent\textbf{Critical Differences:}
 \begin{itemize}
-    \item \textcolor{accentred}{\textbf{Pombhurna uses a fundamentally different link budget approach.}} It computes $P_{r,\min}$ from thermal noise floor ($-104$~dBm) + noise figure (7~dB) + SNR$_{\min}$ (3~dB) = $-94$~dBm, and includes body loss (3~dB) and indoor penetration loss (10~dB). This gives $L_{\max} = 133$~dB.
-    \item \textcolor{accentblue}{\textbf{Kagal and Ralegaon}} use $P_{r,\min} = -104$~dBm directly (given specification) and only subtract shadow fading margin, yielding $L_{\max} = 158$~dB.
-    \item The 25~dB difference in $L_{\max}$ \textbf{drastically changes} $R_{\max}$: Pombhurna gets $R_{\max} = 843$~m vs.\ 3680~m for the other two. This is the single largest divergence across the three reports.
+    \item \textcolor{accentred}{\textbf{Four different $L_{\max}$ computation approaches}} are now visible across the four reports:
+    \begin{enumerate}
+        \item \textbf{Kagal \& Ralegaon} ($L_{\max} = 158$~dB): Use antenna gain and cable loss in the extended budget.
+        \item \textbf{Pombhurna} ($L_{\max} = 133$~dB): Uses thermal noise floor with NF, body loss, and penetration loss.
+        \item \textbf{Sakri} ($L_{\max} = 140$~dB): Uses the simplest approach --- just $P_t - P_{r,\min} - L_{\text{sf}} = 150 - 10 = 140$~dB. Does \textbf{not} include antenna gain or cable loss in the link budget.
+    \end{enumerate}
+    \item Sakri uses a fading margin of \textbf{10~dB} (vs.\ 8~dB for the other three), citing it as a practical worst-case margin exceeding the 6~dB $\sigma_{\text{SF}}$ from 3GPP.
+    \item The spread is now 25~dB between the highest (158~dB) and lowest (133~dB) $L_{\max}$ values.
 \end{itemize}
 
 %=============================================================================
@@ -201,31 +207,31 @@ Substitution & $46 + 18 - 2 + 104 - 8$ & $46 + 18 - 2 + 104 - 8$ & $60 + 0 - 3 -
 \caption{Path Loss Model Comparison}
 \label{tab:pl_models}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}p{4.5cm}p{4cm}p{4cm}p{4cm}@{}}
+\begin{tabular}{@{}p{4cm}p{3.5cm}p{3.5cm}p{3.5cm}p{3.5cm}@{}}
 \toprule
-\textbf{Aspect} & \textbf{Kagal} & \textbf{Ralegaon} & \textbf{Pombhurna} \\
+\textbf{Aspect} & \textbf{Kagal} & \textbf{Ralegaon} & \textbf{Pombhurna} & \textbf{Sakri} \\
 \midrule
-Primary Model & \same{UMa NLOS} & \same{UMa NLOS} & \same{UMa NLOS} \\
-3GPP Reference & \same{TR~38.901 Table~7.4.1-1} & \same{TR~38.901 Table~7.4.1-1} & \same{TR~38.901 Table~7.4.1-1} \\
-UMa NLOS formula & \same{$13.54 + 39.08\log_{10}(d_{3D})$} & \same{Same} & \same{Same} \\
- & \same{$+ 20\log_{10}(f_c) - 0.6(h_{UT}-1.5)$} & & \\
-$\sigma_{\text{SF}}$ (UMa NLOS) & 6.0~dB & Not stated & Not stated \\
-UMi NLOS (microcell) & \uniq{Yes, presented} & Not presented & Not presented \\
-RMa NLOS (umbrella) & Referenced & \uniq{Used for 13 umbrella cells} & Not presented \\
+Primary Model & \same{UMa NLOS} & \same{UMa NLOS} & \same{UMa NLOS} & \same{UMa NLOS} \\
+3GPP Reference & \same{TR~38.901 Table~7.4.1-1} & \same{Same} & \same{Same} & \same{Same} \\
+UMa NLOS formula & \same{$13.54 + 39.08\log_{10}(d_{3D})$} & \same{Same} & \same{Same} & \same{Same} \\
+ & \same{$+ 20\log_{10}(f_c) - 0.6(h_{UT}-1.5)$} & & & \\
+$\sigma_{\text{SF}}$ (UMa NLOS) & 6.0~dB & Not stated & Not stated & 6~dB (mentioned, but uses 10~dB margin) \\
+UMi NLOS (microcell) & \uniq{Yes, presented} & Not presented & Not presented & Not presented \\
+RMa NLOS (umbrella) & Referenced & \uniq{Used for 13 umbrella cells} & Not presented & Not presented \\
 \midrule
-Breakpoint $d'_{BP}$ & \same{452.4~m} & \same{452.4~m} & Not computed (but implicit) \\
-UMa LOS formula & Fully stated (2 regimes) & Fully stated (2 regimes) & Not stated \\
-NLOS justification & Dense residential NLOS photos & Conservative worst-case & Conservative worst-case \\
+Breakpoint $d'_{BP}$ & \diff{452.4~m} & \diff{452.4~m} & Not computed & \diff{900~m} \\
+UMa LOS formula & Fully stated (2 regimes) & Fully stated & Not stated & Fully stated (2 regimes) \\
+NLOS justification & Dense residential NLOS photos & Conservative worst-case & Conservative worst-case & Semi-urban environment \\
 \bottomrule
 \end{tabular}}%
 \end{table}
 
 \noindent\textbf{Observations:}
 \begin{itemize}
-    \item All three use the same UMa NLOS formula from 3GPP TR~38.901, which is correct for the assignment.
+    \item All four use the same UMa NLOS formula from 3GPP TR~38.901.
+    \item \textcolor{accentred}{\textbf{Breakpoint distance discrepancy:}} Kagal and Ralegaon compute $d'_{BP} = 452.4$~m (using effective heights $h'_{BS} = 24$~m, $h'_{UT} = 0.5$~m as per 3GPP TR~38.901). \textbf{Sakri computes $d_{BP} = 900$~m} using the raw heights ($h_{BS} = 25$~m, $h_{UT} = 1.5$~m) without the 3GPP effective height correction. This is a \textbf{methodological error} --- 3GPP TR~38.901 defines $h'_{BS} = h_{BS} - h_E$ and $h'_{UT} = h_{UT} - h_E$ with $h_E = 1$~m for UMa, giving $d'_{BP} = 452.4$~m, not 900~m.
     \item \textbf{Kagal} is the only report that explicitly presents the UMi NLOS model for microcell planning.
-    \item \textbf{Ralegaon} relies heavily on the RMa NLOS model for its 13 umbrella cells.
-    \item \textbf{Pombhurna} derives a frequency-dependent delay spread formula ($\mu_{\log_{10}(\text{DS})} = -6.28 - 0.204\log_{10}(f_c)$) from Table~7.5-6, which the other reports do not explicitly show.
+    \item \textbf{Sakri} uniquely takes $\text{PL} = \max(\text{PL}_{\text{LOS}}, \text{PL}_{\text{NLOS}})$ for final path loss evaluation, which is correct per the standard.
 \end{itemize}
 
 %=============================================================================
@@ -238,30 +244,30 @@ NLOS justification & Dense residential NLOS photos & Conservative worst-case & C
 \caption{$R_{\max}$ and Network Sizing Comparison}
 \label{tab:rmax}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}p{5cm}p{3.5cm}p{3.5cm}p{4cm}@{}}
+\begin{tabular}{@{}p{4.5cm}p{3cm}p{3cm}p{3cm}p{3cm}@{}}
 \toprule
-\textbf{Parameter} & \textbf{Kagal} & \textbf{Ralegaon} & \textbf{Pombhurna} \\
+\textbf{Parameter} & \textbf{Kagal} & \textbf{Ralegaon} & \textbf{Pombhurna} & \textbf{Sakri} \\
 \midrule
-$L_{\max}$ used & \diff{158~dB} & \diff{158~dB} & \diff{133~dB} \\
+$L_{\max}$ used & \diff{158~dB} & \diff{158~dB} & \diff{133~dB} & \diff{140~dB} \\
 \midrule
-$R_{\max}$ (UMa NLOS) & \diff{3680~m (3.68~km)} & \diff{3680~m (3.68~km)} & \diff{843~m (0.843~km)} \\
-$R_{\max}$ (UMi NLOS) & 4868~m & --- & --- \\
-$R_{\max}$ (RMa NLOS) & 6258~m & 6258~m & --- \\
+$R_{\max}$ (UMa NLOS) & \diff{3680~m} & \diff{3680~m} & \diff{843~m} & \diff{Not computed explicitly} \\
+$R_{\max}$ (UMi NLOS) & 4868~m & --- & --- & --- \\
+$R_{\max}$ (RMa NLOS) & 6258~m & 6258~m & --- & --- \\
 \midrule
-Reuse Factor $N$ & \diff{1 (OFDMA + ICIC)} & \diff{7} & \diff{7} \\
-$D/R$ ratio & \diff{$\sqrt{3} \approx 1.732$} & \diff{$\sqrt{21} \approx 4.583$} & \diff{$\sqrt{21} \approx 4.583$} \\
+Reuse Factor $N$ & \diff{1 (OFDMA + ICIC)} & \diff{7} & \diff{7} & \diff{7} \\
+$D/R$ ratio & \diff{$\sqrt{3} \approx 1.732$} & \diff{$\sqrt{21} \approx 4.583$} & \diff{$\sqrt{21} \approx 4.583$} & \diff{$\sqrt{21} \approx 4.583$} \\
 \midrule
-$R_{\max}$ derivation method & Analytic closed-form & Analytic closed-form & Binary search (code) \\
-Verification shown? & Yes (PL at 3680~m = 158~dB) & Yes (PL at 843~m = 133~dB) & Yes (table of PL vs.\ distance) \\
+$R_{\max}$ derivation & Analytic closed-form & Analytic closed-form & Binary search (code) & \uniq{Design-then-verify approach} \\
+Verification shown? & Yes (PL at 3680~m = 158~dB) & Yes & Yes (PL vs.\ distance table) & Yes (PL at each radius checked) \\
 \bottomrule
 \end{tabular}}%
 \end{table}
 
 \noindent\textbf{Critical Differences:}
 \begin{itemize}
-    \item Kagal uses $N=1$ (unit frequency reuse for LTE OFDMA with ICIC), giving $D/R = \sqrt{3}$. The other two use $N=7$, giving $D/R = \sqrt{21} \approx 4.583$. The $N=1$ approach is more modern and appropriate for LTE, since LTE uses OFDMA and does not require traditional frequency reuse.
-    \item Pombhurna's $R_{\max}$ is \textbf{4.4$\times$ smaller} than the other two due to the conservative link budget. This forces more cells per unit area.
-    \item Kagal and Ralegaon agree exactly on $R_{\max}$ values for both UMa NLOS (3680~m) and RMa NLOS (6258~m).
+    \item Kagal uses $N=1$ (unit frequency reuse for LTE OFDMA with ICIC), giving $D/R = \sqrt{3}$. The other three use $N=7$, giving $D/R = \sqrt{21} \approx 4.583$.
+    \item \textcolor{accentred}{\textbf{Sakri does not compute $R_{\max}$ explicitly.}} Instead, it selects cell radii from practical ranges (800~m for macro, 300~m for micro, 1500~m for umbrella), then verifies whether the path loss at those radii is below $L_{\max} = 140$~dB. This is an \textbf{inverse approach} compared to the other three reports that compute $R_{\max}$ first and then design cells within that limit.
+    \item Pombhurna's $R_{\max}$ is 4.4$\times$ smaller than Kagal/Ralegaon due to the conservative link budget.
 \end{itemize}
 
 %=============================================================================
@@ -274,35 +280,36 @@ Verification shown? & Yes (PL at 3680~m = 158~dB) & Yes (PL at 843~m = 133~dB) &
 \caption{Final Network Design Comparison}
 \label{tab:network}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}p{4.5cm}p{4cm}p{4cm}p{4.5cm}@{}}
+\begin{tabular}{@{}p{4cm}p{3.5cm}p{3.5cm}p{3.5cm}p{3.5cm}@{}}
 \toprule
-\textbf{Design Aspect} & \textbf{Kagal} & \textbf{Ralegaon} & \textbf{Pombhurna} \\
+\textbf{Design Aspect} & \textbf{Kagal} & \textbf{Ralegaon} & \textbf{Pombhurna} & \textbf{Sakri} \\
 \midrule
-Number of Iterations & 2 & 2 & 2 \\
+Number of Iterations & 3 (3$\to$5$\to$7 sites) & 2 & 2 & 2 (initial $\to$ umbrella redesign) \\
 \midrule
-\textbf{Iteration 1} & 3 sites (gaps found: eastern residential, river-side) & 8 sites linear along highway (failed: dead zones in core) & 7 cells, varied radii (6 of 7 fail $R > R_{\max}$) \\
+\textbf{Iteration 1} & 3 sites (gaps found) & 8 linear sites (dead zones) & 7 cells, varied radii & Full plan: macro + micro + umbrella ($R=1500$~m fails PL) \\
 \midrule
-\textbf{Final Design:} & & & \\
-Total Macrocell Sites & \diff{5} & \diff{4 normal + 13 umbrella = 17} & \diff{8 normal macrocells} \\
-Macrocell Radius & \diff{800~m (uniform)} & \diff{750~m (normal)} & \diff{800~m (uniform)} \\
-Umbrella Cells & \diff{1 ($R \approx 2500$~m)} & \diff{13 ($R = 1000$~m)} & \diff{1 ($R = 1000$~m)} \\
-Microcells & \diff{2 ($R = 200$--300~m)} & \diff{0} & \diff{1 ($R = 200$~m)} \\
+\textbf{Final Design:} & & & & \\
+Total Macrocell Sites & \diff{7} & \diff{4 normal + 13 umbrella = 17} & \diff{8 normal} & \diff{3} \\
+Macrocell Radius & \diff{800~m (uniform)} & \diff{750~m (normal)} & \diff{800~m (uniform)} & \diff{800~m} \\
+Umbrella Cells & \diff{0 (hex overlap covers highway)} & \diff{13 ($R = 1000$~m)} & \diff{1 ($R = 1000$~m)} & \diff{2 ($R = 1200$~m, redesigned from 1500~m)} \\
+Microcells & \diff{2 ($R = 200$--300~m)} & \diff{0} & \diff{1 ($R = 200$~m)} & \diff{Zone microcells ($R = 300$~m)} \\
 \midrule
-Cell Radius Approach & Uniform $R$ for all macrocells & Two tiers: 750~m + 1000~m & Uniform $R$ for macrocells \\
-PL at cell edge & 132.1~dB & 131.0~dB (normal) / 135.9~dB (umbrella) & 132.1~dB \\
-Margin vs.\ $L_{\max}$ & 25.9~dB & 27.0~dB / 22.1~dB & 0.89~dB \\
-Total coverage area & 8.31~km$^2$ & $\approx$39.6~km$^2$ & $\approx$13.3~km$^2$ \\
-GPS Coordinates? & No & \uniq{Yes (17 lat/lon pairs from KML)} & No \\
+Cell Radius Approach & Uniform $R$ for all macros & Two tiers: 750~m + 1000~m & Uniform $R$ for macros & Fixed $R$ per tier \\
+PL at cell edge & 132.1~dB & 131.0~dB / 135.9~dB & 132.1~dB & 132~dB (macro) / 138~dB (umbrella) \\
+Margin vs.\ $L_{\max}$ & 25.9~dB & 27.0~dB / 22.1~dB & 0.89~dB & 8~dB (macro) / 2~dB (umbrella) \\
+Total coverage area & 11.6~km$^2$ & $\approx$39.6~km$^2$ & $\approx$13.3~km$^2$ & $\approx$6.75~km$^2$ \\
+GPS Coordinates? & No & \uniq{Yes (17 lat/lon from KML)} & No & No \\
 \bottomrule
 \end{tabular}}%
 \end{table}
 
 \noindent\textbf{Key Differences:}
 \begin{itemize}
-    \item \textbf{Ralegaon} has the most aggressive design: 17 total sites (13 umbrella + 4 normal) to cover 18.2~km$^2$. This is architecturally unusual --- most plans use 1--2 umbrella cells as an overlay, not 13.
-    \item \textbf{Kagal} has the most compact, efficient design: 5 macrocells + 2 microcells + 1 umbrella, with a large 25.9~dB margin.
-    \item \textbf{Pombhurna} has almost no margin (0.89~dB) due to its conservative $L_{\max} = 133$~dB and $R_{\max} = 843$~m. Any cell with $R > 843$~m would fail.
-    \item Iteration methodology is similar across all three: start with an insufficient design, identify coverage holes/failures, add sites or reduce radii.
+    \item \textbf{Ralegaon} has the most aggressive design: 17 total sites for 18.2~km$^2$.
+    \item \textbf{Kagal} has a clean 7-cell hex ring with no umbrella cells; the highway is covered by macrocell overlap.
+    \item \textbf{Sakri} has a practical iterative design process: initial umbrella cells at $R = 1500$~m \textbf{fail} the path loss constraint ($144 > 140$~dB), so they are redesigned to $R = 1200$~m ($138 < 140$~dB). This is well-documented with supporting figures for every iteration.
+    \item \textbf{Pombhurna} has almost no margin (0.89~dB); \textbf{Sakri} has only 2~dB margin on its umbrella cells.
+    \item Sakri uniquely provides exact path loss calculations for both LOS and NLOS at each cell radius, taking $\text{PL} = \max(\text{PL}_{\text{LOS}}, \text{PL}_{\text{NLOS}})$.
 \end{itemize}
 
 %=============================================================================
@@ -315,34 +322,35 @@ GPS Coordinates? & No & \uniq{Yes (17 lat/lon pairs from KML)} & No \\
 \caption{Special Cell Layer Comparison}
 \label{tab:special_cells}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}p{3.5cm}p{4.2cm}p{4.2cm}p{4.2cm}@{}}
+\begin{tabular}{@{}p{3cm}p{3.5cm}p{3.5cm}p{3.5cm}p{3.5cm}@{}}
 \toprule
-\textbf{Cell Type} & \textbf{Kagal} & \textbf{Ralegaon} & \textbf{Pombhurna} \\
+\textbf{Cell Type} & \textbf{Kagal} & \textbf{Ralegaon} & \textbf{Pombhurna} & \textbf{Sakri} \\
 \midrule
-\textbf{Microcells} & & & \\
-Count & 2 & 0 & 1 \\
-$h_{\text{BS}}$ & 10~m & --- & 10~m \\
-Radius & 200--300~m & --- & 200~m \\
-Model & UMi NLOS & --- & UMi NLOS \\
-Location & Market area + Bus stand & --- & Market / NH-930 \\
-PL verification & Yes (115.3~dB at 300~m) & --- & Mentioned but not computed \\
+\textbf{Microcells} & & & & \\
+Count & 2 & 0 & 1 & Zone microcells (count unspecified) \\
+$h_{\text{BS}}$ & 10~m & --- & 10~m & Not stated \\
+Radius & 200--300~m & --- & 200~m & 300~m \\
+Model & UMi NLOS & --- & UMi NLOS & Not explicitly stated \\
+Location & Market + Bus stand & --- & Market / NH-930 & Market, bus stand, Sakri Road corridor \\
+PL verification & Yes (115.3~dB at 300~m) & --- & Mentioned, not computed & Not computed for microcells \\
 \midrule
-\textbf{Umbrella Cells} & & & \\
-Count & 1 & \diff{13} & 1 \\
-$h_{\text{BS}}$ & 35~m & 35~m & 35~m \\
-Radius & $\approx$2500~m & 1000~m & 1000~m \\
-Model & RMa NLOS & RMa NLOS & RMa NLOS \\
-Purpose & NH-48 highway overlay & Highway + agricultural + suburban & Highway overlay \\
-Justification depth & 1 paragraph & \uniq{2 full subsections (handover mitigation + agricultural coverage)} & 1 paragraph \\
+\textbf{Umbrella Cells} & & & & \\
+Count & 0 & \diff{13} & 1 & 2 \\
+$h_{\text{BS}}$ & --- & 35~m & 35~m & Not stated (implied standard) \\
+Radius & --- & 1000~m & 1000~m & \uniq{1200~m (redesigned from 1500~m)} \\
+Model & --- & RMa NLOS & RMa NLOS & UMa (same model; no separate RMa) \\
+Purpose & N/A (hex overlap) & Highway + agricultural & Highway overlay & NH-53 highway coverage \\
+Justification depth & N/A & \uniq{2 full subsections} & 1 paragraph & \uniq{Full iterative redesign with PL verification} \\
 \bottomrule
 \end{tabular}}%
 \end{table}
 
 \noindent\textbf{Observations:}
 \begin{itemize}
-    \item Ralegaon's use of 13 umbrella cells is distinctive and extensively justified with handover failure analysis and agricultural coverage arguments.
-    \item Kagal provides explicit path loss verification for microcells ($115.3$~dB at 300~m $\ll L_{\max}$).
-    \item All umbrella cells use $h_{\text{BS}} = 35$~m and RMa NLOS consistently.
+    \item Ralegaon's use of 13 umbrella cells remains architecturally unusual.
+    \item \textcolor{accentblue}{\textbf{Sakri's umbrella cell redesign}} is the most methodologically rigorous: the initial $R = 1500$~m is shown to fail ($\text{PL} = 144 > 140$~dB), prompting a redesign to $R = 1200$~m ($\text{PL} = 138 < 140$~dB). Both calculations are shown step-by-step.
+    \item Kagal eliminates the need for umbrella cells entirely through a 7-cell hex ring design.
+    \item \textcolor{accentred}{\textbf{Sakri uses the same UMa model for umbrella cells}} instead of shifting to RMa NLOS as the other reports do. This is noteworthy because UMa is intended for $h_{\text{BS}} = 25$~m in urban macro scenarios, while umbrella cells typically use taller towers (35~m) with the RMa model.
 \end{itemize}
 
 %=============================================================================
@@ -355,50 +363,53 @@ Justification depth & 1 paragraph & \uniq{2 full subsections (handover mitigatio
 \caption{Part 2 --- CDL Channel Simulation Comparison}
 \label{tab:part2}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}p{4.5cm}p{4cm}p{4cm}p{4.5cm}@{}}
+\begin{tabular}{@{}p{4cm}p{3.2cm}p{3.2cm}p{3.2cm}p{3.5cm}@{}}
 \toprule
-\textbf{Aspect} & \textbf{Kagal} & \textbf{Ralegaon} & \textbf{Pombhurna} \\
+\textbf{Aspect} & \textbf{Kagal} & \textbf{Ralegaon} & \textbf{Pombhurna} & \textbf{Sakri} \\
 \midrule
-3GPP Reference & \same{Section 7.5, TR~38.901} & \same{Section 7.5, TR~38.901} & \same{Section 7.5, TR~38.901} \\
-Steps Implemented & \diff{All 12 steps} & \diff{Steps 1--6 (numerical) + 7--12 (discussion)} & \diff{Steps 1--6 (numerical) + 7--12 (discussion)} \\
+3GPP Reference & \same{Section 7.5, TR~38.901} & \same{Same} & \same{Same} & \same{Same} \\
+Steps Implemented & \diff{All 12 steps} & \diff{Steps 1--6 (num) + 7--12 (disc)} & \diff{Steps 1--6 (num) + 7--12 (disc)} & \diff{Steps 1--6 (numerical + code results)} \\
 \midrule
-\textbf{MIMO Configuration} & & & \\
-BS Antennas & \diff{8 (4-col cross-pol)} & \diff{4 (ULA)} & \diff{4 (ULA)} \\
-UE Antennas & \same{2} & \same{2} & \same{2} \\
-$H$ matrix size & \diff{$2 \times 8$} & \diff{$2 \times 4$} & \diff{$2 \times 4$} \\
+\textbf{MIMO Config} & & & & \\
+BS Antennas & \diff{8 (4-col cross-pol)} & \diff{4 (ULA)} & \diff{4 (ULA)} & \diff{1 (single BS, simplified)} \\
+UE Antennas & \same{2} & \same{2} & \same{2} & \diff{1 (single UT)} \\
+$H$ matrix size & \diff{$2 \times 8$} & \diff{$2 \times 4$} & \diff{$2 \times 4$} & \diff{Not applicable (link-level only)} \\
 \midrule
-Simulation Distance & 583~m (from Site~1) & 500~m & 500~m \\
-Number of Clusters & \diff{20} & \diff{20} & \diff{3 (for demonstration)} \\
-Rays per Cluster & 20 & 20 & Not specified \\
+Simulation Distance & 583~m & 500~m & 500~m & 632~m \\
+Number of Clusters & \diff{20} & \diff{20} & \diff{3} & \diff{19 (UMa NLOS per TR~38.901)} \\
+Rays per Cluster & 20 & 20 & Not specified & Not specified \\
 \midrule
-$r_\tau$ (delay scaling) & \diff{2.3} & \diff{2.3 (code) / 2.1 (analytic)} & \diff{2.1} \\
-$C_\phi$ & 1.289 & 1.289 (code) & Not stated \\
-$C_\theta$ & 1.178 & 1.178 (code) & Not stated \\
+$r_\tau$ (delay scaling) & \diff{2.3} & \diff{2.3 (code) / 2.1 (text)} & \diff{2.1} & Not stated \\
+$C_\phi$ & 1.289 & 1.289 & Not stated & Not stated \\
+$C_\theta$ & 1.178 & 1.178 & Not stated & Not stated \\
 \midrule
-\textbf{LSP Parameters (Table 7.5-6):} & & & \\
-$\mu_{\log_{10}(\text{DS})}$ & $-6.955$ (in code) & $-6.955$ (in code) & $-6.332$ (frequency-dependent formula) \\
-ASA $\mu$ & 1.81 & 1.81 & Not stated \\
-ASD $\mu$ & 1.59 & 1.59 & Not stated \\
-ZSA $\mu$ & 0.88 & 0.88 & Not stated \\
-ZSD $\mu$ & 0.50 & 0.50 & Not stated \\
+\textbf{LSP Parameters:} & & & & \\
+$\mu_{\log_{10}(\text{DS})}$ & $-6.955$ & $-6.955$ & $-6.332$ & $-6.89$ \\
+ASA $\mu$ & 1.81 & 1.81 & Not stated & 1.76 \\
+ASD $\mu$ & 1.59 & 1.59 & Not stated & 1.62 \\
+ZSA $\mu$ & 0.88 & 0.88 & Not stated & 0.70 \\
+ZSD $\mu$ & 0.50 & 0.50 & Not stated & 0.47 \\
 \midrule
-Polarisation & Cross-polarised (Eq.~7.5-22) & VV only (simplified) & VV only (simplified) \\
-Doppler included? & \uniq{Yes ($v = 3$~km/h)} & Yes (discussion: $v = 50$~km/h, $f_{d,\max} = 83.3$~Hz) & Yes (discussion only) \\
+Polarisation & Cross-polarised (Eq.~7.5-22) & VV only & VV only & Simplified omnidirectional \\
+Doppler included? & \uniq{Yes ($v = 3$~km/h)} & Yes (disc: $v = 50$~km/h) & Yes (discussion) & Mentioned ($v = 3$~km/h) \\
 \midrule
-\textbf{Output Results} & & & \\
-SVD analysis & Not shown numerically & \uniq{$\sigma_1 = 1.94$, $\sigma_2 = 0.68$, CN = 2.87} & Not shown \\
-Capacity estimate & Not shown numerically & \uniq{1.82 bps/Hz at 3~dB SNR} & Not shown \\
-Plots & \uniq{PDP, APS(AOA), $|H|$ heatmap} & None & None \\
+\textbf{Output Results} & & & & \\
+SVD analysis & Not shown & \uniq{$\sigma_1 = 1.94$, CN = 2.87} & Not shown & Not shown \\
+Capacity estimate & Not shown & \uniq{1.82 bps/Hz} & Not shown & Not shown \\
+Plots & \uniq{PDP, APS, $|H|$ heatmap} & None & None & None \\
+Code results shown? & Yes (full output) & In body & In body & \uniq{Yes (LSP values, cluster delays, cluster powers from code)} \\
 \bottomrule
 \end{tabular}}%
 \end{table}
 
 \noindent\textbf{Key Differences:}
 \begin{itemize}
-    \item \textcolor{accentblue}{\textbf{Kagal}} implements \textbf{all 12 steps} with a full $2 \times 8$ MIMO system, cross-polarised antenna patterns (Eq.~7.5-22), Doppler, and produces PDP/APS/heatmap plots. This is the most complete implementation.
-    \item \textbf{Ralegaon and Pombhurna} implement Steps~1--6 numerically with a $2 \times 4$ ULA, and only discuss Steps~7--12 qualitatively. \textcolor{accentred}{Notably, Ralegaon's code and analytic sections appear to be identical to Pombhurna's code} (same random seed, same variable names, same comments referencing ``Pombhurna'' even in the Ralegaon report).
-    \item Pombhurna uses only $N = 3$ clusters for demonstration (vs.\ 20 in the other two), showing explicit hand-calculations for each step.
-    \item The delay scaling parameter $r_\tau$ differs: Kagal uses 2.3, Pombhurna uses 2.1. The Ralegaon code uses 2.3 but the analytic section uses 2.1 (inconsistency).
+    \item \textcolor{accentblue}{\textbf{Kagal}} implements \textbf{all 12 steps} with a full $2 \times 8$ MIMO system, cross-polarised antennas, Doppler, and produces PDP/APS/heatmap plots. Most complete implementation.
+    \item \textbf{Ralegaon and Pombhurna} implement Steps~1--6 numerically and discuss Steps~7--12 qualitatively.
+    \item \textbf{Sakri} implements Steps~1--6 with \textbf{Python code output} (cluster delays, cluster powers, LSPs) but uses a simplified \textbf{single-antenna link-level model} (1~BS, 1~UT). It does not construct a MIMO channel matrix.
+    \item Sakri uses $N = 19$ clusters (correct for UMa NLOS per 3GPP), matching the standard better than Pombhurna's $N = 3$.
+    \item \textcolor{accentred}{\textbf{Sakri's LSP values differ}} from Kagal/Ralegaon: $\mu_{\text{DS}} = -6.89$ vs.\ $-6.955$; ASA~$\mu = 1.76$ vs.\ 1.81; ASD~$\mu = 1.62$ vs.\ 1.59; ZSA~$\mu = 0.70$ vs.\ 0.88; ZSD~$\mu = 0.47$ vs.\ 0.50. These discrepancies suggest Sakri may be using a different sub-table or different frequency interpolation from Table~7.5-6.
+    \item Sakri's angle calculations (AOD, AOA, ZOD, ZOA) are detailed and geometrically derived, which the other reports do not show as explicitly.
 \end{itemize}
 
 %=============================================================================
@@ -411,31 +422,31 @@ Plots & \uniq{PDP, APS(AOA), $|H|$ heatmap} & None & None \\
 \caption{Python Code Comparison}
 \label{tab:code}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}p{4.5cm}p{4cm}p{4cm}p{4.5cm}@{}}
+\begin{tabular}{@{}p{4cm}p{3.2cm}p{3.2cm}p{3.2cm}p{3.5cm}@{}}
 \toprule
-\textbf{Code Aspect} & \textbf{Kagal} & \textbf{Ralegaon} & \textbf{Pombhurna} \\
+\textbf{Code Aspect} & \textbf{Kagal} & \textbf{Ralegaon} & \textbf{Pombhurna} & \textbf{Sakri} \\
 \midrule
-Code files & 2 separate scripts: link budget + CDL simulator & 1 embedded script & 1 embedded script \\
-Language & Python (NumPy, SciPy) & Python (NumPy) & Python (NumPy) \\
-Random Seed & Not specified & \diff{42} & \diff{42} \\
+Code files & 2 separate scripts & 1 embedded script & 1 embedded script & \uniq{No code listings in report (results shown from code)} \\
+Language & Python (NumPy, SciPy) & Python (NumPy) & Python (NumPy) & Python (implied) \\
+Random Seed & Not specified & \diff{42} & \diff{42} & \diff{Not stated} \\
 \midrule
-Link Budget Code & Separate modular script & Included in main script & Included in main script \\
-$R_{\max}$ method & Analytic (direct solve) & Binary search & Binary search \\
+Link Budget Code & Separate modular & Included in main & Included in main & Not shown \\
+$R_{\max}$ method & Analytic & Binary search & Binary search & Not computed (design-verify) \\
+Channel Sim Code & Separate modular & Single combined & Single combined & Not shown \\
 \midrule
-Channel Sim Code & Separate modular script & Single combined script & Single combined script \\
-\midrule
-\textbf{Code Similarity} & Distinct, independent & \multicolumn{2}{c}{\cellcolor{diffcolor}\textbf{Ralegaon and Pombhurna code is identical.}} \\
- & implementation & \multicolumn{2}{c}{\cellcolor{diffcolor}Same variable names, same seed(42), same comments,} \\
- & & \multicolumn{2}{c}{\cellcolor{diffcolor}same structure. Ralegaon code even references ``Pombhurna.''} \\
+\textbf{Code Similarity} & Distinct, independent & \multicolumn{2}{c}{\cellcolor{diffcolor}\textbf{Ralegaon and Pombhurna code is identical.}} & Independent (no code shown) \\
+ & implementation & \multicolumn{2}{c}{\cellcolor{diffcolor}Same variable names, seed(42), comments.} & \\
+ & & \multicolumn{2}{c}{\cellcolor{diffcolor}Ralegaon code references ``Pombhurna.''} & \\
 \bottomrule
 \end{tabular}}%
 \end{table}
 
-\noindent\textbf{Key Finding:}
+\noindent\textbf{Key Findings:}
 \begin{itemize}
-    \item \textcolor{accentred}{\textbf{The Python code in Ralegaon and Pombhurna reports is character-for-character identical.}} The Ralegaon report's Python code still contains the string \texttt{``Pombhurna 4G Network Design''} and references ``Pombhurna's semi-urban environment'' -- clear evidence that the code was copied from Pombhurna (or both from a common source) without adaptation.
-    \item Kagal's code is independently written with different architecture (2 separate scripts, different variable names, modular structure, $2 \times 8$ MIMO).
-    \item Both Ralegaon and Pombhurna compute $L_{\max} = 133$~dB and $R_{\max} = 843$~m \textit{in their code}, yet Ralegaon's report text claims $L_{\max} = 158$~dB and $R_{\max} = 3680$~m. This is an internal inconsistency in the Ralegaon report.
+    \item \textcolor{accentred}{\textbf{Ralegaon and Pombhurna}} share identical Python code (same seed, variable names, comments, and even the string ``Pombhurna 4G Network Design'' in the Ralegaon report).
+    \item \textbf{Kagal's} code is independently authored with modular architecture.
+    \item \textbf{Sakri does not include any code listings.} It reports ``Results from code'' sections showing output values (LSPs, cluster delays, cluster powers), but the actual Python code is not reproduced in the report. This means the code cannot be independently verified from the document alone.
+    \item Both Ralegaon and Pombhurna compute $L_{\max} = 133$~dB in their code, yet Ralegaon's report text claims 158~dB --- an internal inconsistency.
 \end{itemize}
 
 %=============================================================================
@@ -448,29 +459,30 @@ Channel Sim Code & Separate modular script & Single combined script & Single com
 \caption{All Key Numerical Values --- Side-by-Side}
 \label{tab:numerical}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}p{6cm}ccc@{}}
+\begin{tabular}{@{}p{5cm}cccc@{}}
 \toprule
-\textbf{Quantity} & \textbf{Kagal} & \textbf{Ralegaon} & \textbf{Pombhurna} \\
+\textbf{Quantity} & \textbf{Kagal} & \textbf{Ralegaon} & \textbf{Pombhurna} & \textbf{Sakri} \\
 \midrule
-\rowcolor{matchcolor} $f_c$ & 1800~MHz & 1800~MHz & 1800~MHz \\
-\rowcolor{matchcolor} $P_t$ & 46~dBm & 46~dBm & 46~dBm \\
-\rowcolor{diffcolor} $G_{\text{ant}}$ (BS) & 18~dBi & 18~dBi & 17~dBi \\
-\rowcolor{diffcolor} Cable Loss & 2~dB & 2~dB & 3~dB \\
-\rowcolor{diffcolor} $P_{r,\min}$ & $-$104~dBm & $-$104~dBm & $-$94~dBm \\
-\rowcolor{matchcolor} $L_{\text{sf}}$ & 8~dB & 8~dB & 8~dB \\
-\rowcolor{matchcolor} $h_{\text{BS}}$ (macro) & 25~m & 25~m & 25~m \\
-\rowcolor{matchcolor} $h_{\text{UT}}$ & 1.5~m & 1.5~m & 1.5~m \\
-\rowcolor{diffcolor} $L_{\max}$ (report text) & 158~dB & 158~dB & 133~dB \\
-\rowcolor{matchcolor} $d'_{\text{BP}}$ & 452.4~m & 452.4~m & (implicit) \\
-\rowcolor{diffcolor} $R_{\max}$ (UMa NLOS) & 3680~m & 3680~m & 843~m \\
-\rowcolor{diffcolor} Reuse Factor $N$ & 1 & 7 & 7 \\
-\rowcolor{diffcolor} $D/R$ & 1.732 & 4.583 & 4.583 \\
-\rowcolor{diffcolor} Total sites (final) & 8 (5M+2$\mu$+1U) & 17 (4N+13U) & 10 (8M+1$\mu$+1U) \\
-\rowcolor{diffcolor} Macrocell $R$ & 800~m & 750~m & 800~m \\
-\rowcolor{diffcolor} Umbrella $R$ & 2500~m & 1000~m & 1000~m \\
-\rowcolor{diffcolor} Margin at cell edge & 25.9~dB & 27.0~dB & 0.89~dB \\
-\rowcolor{diffcolor} $H$ matrix dim. & $2 \times 8$ & $2 \times 4$ & $2 \times 4$ \\
-\rowcolor{diffcolor} CDL steps implemented & 12 & 6+discussion & 6+discussion \\
+\rowcolor{matchcolor} $f_c$ & 1800~MHz & 1800~MHz & 1800~MHz & 1800~MHz \\
+\rowcolor{matchcolor} $P_t$ & 46~dBm & 46~dBm & 46~dBm & 46~dBm \\
+\rowcolor{diffcolor} $G_{\text{ant}}$ (BS) & 18~dBi & 18~dBi & 17~dBi & Not in budget \\
+\rowcolor{diffcolor} Cable Loss & 2~dB & 2~dB & 3~dB & Not in budget \\
+\rowcolor{diffcolor} $P_{r,\min}$ & $-$104~dBm & $-$104~dBm & $-$94~dBm & $-$104~dBm \\
+\rowcolor{diffcolor} $L_{\text{sf}}$ & 8~dB & 8~dB & 8~dB & 10~dB \\
+\rowcolor{matchcolor} $h_{\text{BS}}$ (macro) & 25~m & 25~m & 25~m & 25~m \\
+\rowcolor{matchcolor} $h_{\text{UT}}$ & 1.5~m & 1.5~m & 1.5~m & 1.5~m \\
+\rowcolor{diffcolor} $L_{\max}$ & 158~dB & 158~dB & 133~dB & 140~dB \\
+\rowcolor{diffcolor} $d'_{\text{BP}}$ & 452.4~m & 452.4~m & (implicit) & \textcolor{accentred}{900~m (error)} \\
+\rowcolor{diffcolor} $R_{\max}$ (UMa NLOS) & 3680~m & 3680~m & 843~m & Not computed \\
+\rowcolor{diffcolor} Reuse Factor $N$ & 1 & 7 & 7 & 7 \\
+\rowcolor{diffcolor} $D/R$ & 1.732 & 4.583 & 4.583 & 4.583 \\
+\rowcolor{diffcolor} Total sites (final) & 9 (7M+2$\mu$) & 17 (4N+13U) & 10 (8M+1$\mu$+1U) & $\geq$5 (3M+$\mu$+2U) \\
+\rowcolor{diffcolor} Macrocell $R$ & 800~m & 750~m & 800~m & 800~m \\
+\rowcolor{diffcolor} Umbrella $R$ & --- & 1000~m & 1000~m & 1200~m \\
+\rowcolor{diffcolor} Margin at edge & 25.9~dB & 27.0~dB & 0.89~dB & 8~dB / 2~dB \\
+\rowcolor{diffcolor} $H$ matrix dim. & $2 \times 8$ & $2 \times 4$ & $2 \times 4$ & N/A \\
+\rowcolor{diffcolor} CDL steps & 12 & 6+discussion & 6+discussion & 6 (code results) \\
+\rowcolor{diffcolor} Clusters & 20 & 20 & 3 & 19 \\
 \bottomrule
 \end{tabular}}%
 \end{table}
@@ -487,7 +499,7 @@ Channel Sim Code & Separate modular script & Single combined script & Single com
 \caption{Strengths and Weaknesses Summary}
 \label{tab:strengths}
 \resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}p{2.5cm}p{5.5cm}p{5.5cm}@{}}
+\begin{tabular}{@{}p{2.2cm}p{5cm}p{5cm}@{}}
 \toprule
 \textbf{Report} & \textbf{Strengths} & \textbf{Weaknesses} \\
 \midrule
@@ -501,12 +513,12 @@ Channel Sim Code & Separate modular script & Single combined script & Single com
 \item UMi NLOS model for microcells
 \item Simulation output plots (PDP, APS, $|H|$)
 \item Independent, original code
+\item Clean 7-cell hex ring design
 \end{itemize}
 \end{minipage} &
 \begin{minipage}[t]{\linewidth}
 \begin{itemize}[nosep]
 \item No GPS coordinates for sites
-\item Relatively brief iteration descriptions
 \item Does not compute thermal noise floor explicitly
 \end{itemize}
 \end{minipage} \\
@@ -514,18 +526,17 @@ Channel Sim Code & Separate modular script & Single combined script & Single com
 \textbf{Ralegaon} &
 \begin{minipage}[t]{\linewidth}
 \begin{itemize}[nosep]
-\item Extensive iteration methodology
 \item GPS coordinates for all 17 sites
 \item Detailed umbrella cell justification
 \item KML-based mapping
+\item SVD and capacity analysis
 \end{itemize}
 \end{minipage} &
 \begin{minipage}[t]{\linewidth}
 \begin{itemize}[nosep]
-\item \textcolor{accentred}{Code is identical to Pombhurna, not adapted}
+\item \textcolor{accentred}{Code identical to Pombhurna}
 \item Code says $L_{\max} = 133$~dB but report says 158~dB
-\item 13 umbrella cells is architecturally unusual
-\item No simulation output plots
+\item 13 umbrella cells is unusual
 \item Steps 7--12 are discussion only
 \end{itemize}
 \end{minipage} \\
@@ -533,18 +544,39 @@ Channel Sim Code & Separate modular script & Single combined script & Single com
 \textbf{Pombhurna} &
 \begin{minipage}[t]{\linewidth}
 \begin{itemize}[nosep]
-\item Most detailed link budget (thermal noise, NF, SNR)
+\item Most detailed link budget
 \item Explicit hand-calculations for each CDL step
 \item Frequency-dependent DS formula
-\item Clean tabular presentation of PL vs.\ distance
 \end{itemize}
 \end{minipage} &
 \begin{minipage}[t]{\linewidth}
 \begin{itemize}[nosep]
-\item Only 3 clusters demonstrated (vs.\ full 20)
-\item No simulation output plots
+\item Only 3 clusters demonstrated
+\item Very tight margin (0.89~dB)
 \item Steps 7--12 are discussion only
-\item Very tight margin (0.89~dB) questions robustness
+\end{itemize}
+\end{minipage} \\
+\midrule
+\textbf{Sakri} &
+\begin{minipage}[t]{\linewidth}
+\begin{itemize}[nosep]
+\item Excellent visual documentation (14 figures)
+\item Iterative design with PL verification at each step
+\item Practical range-based cell radius selection
+\item Correct use of $\max(\text{PL}_{\text{LOS}}, \text{PL}_{\text{NLOS}})$
+\item Correct $N = 19$ clusters for UMa NLOS
+\item Code output shown for LSPs, delays, powers
+\end{itemize}
+\end{minipage} &
+\begin{minipage}[t]{\linewidth}
+\begin{itemize}[nosep]
+\item \textcolor{accentred}{Breakpoint distance error (900~m vs.\ correct 452.4~m)}
+\item No antenna gain/cable loss in link budget
+\item No $R_{\max}$ computation
+\item No MIMO channel matrix
+\item No code listings included
+\item Uses UMa (not RMa) for umbrella cells
+\item Single-antenna link model only
 \end{itemize}
 \end{minipage} \\
 \bottomrule
@@ -556,7 +588,17 @@ Channel Sim Code & Separate modular script & Single combined script & Single com
 \begin{center}
 \fcolorbox{accentred}{diffcolor}{%
 \begin{minipage}{0.9\textwidth}
-\textbf{Important Finding:} The Python code in the Ralegaon report (by Atharva S Chaudhari) is \textbf{identical} to the Python code in the Pombhurna report (by Prasad Patil). All variable names, comments, random seed (\texttt{np.random.seed(42)}), system parameters ($G_{\text{BS}} = 17$~dBi, $L_f = 3$~dB, $L_{\max} = 133$~dB), and even the docstring ``\texttt{Pombhurna 4G Network Design}'' are preserved in the Ralegaon report without modification. Furthermore, Step~12 in the Ralegaon report still references ``representative of Pombhurna's semi-urban environment.'' The analytic sections (Part~2, Steps~1--6) in both reports are also textually identical, including the same numerical examples ($X_1 = 0.5, X_2 = 0.3, X_3 = 0.8$; same computed delays 677~ns, 1175~ns, 218~ns).
+\textbf{Important Finding:} The Python code in the Ralegaon report (by Atharva S Chaudhari) is \textbf{identical} to the Python code in the Pombhurna report (by Prasad Patil). All variable names, comments, random seed (\texttt{np.random.seed(42)}), system parameters ($G_{\text{BS}} = 17$~dBi, $L_f = 3$~dB, $L_{\max} = 133$~dB), and even the docstring ``\texttt{Pombhurna 4G Network Design}'' are preserved in the Ralegaon report without modification. Step~12 in Ralegaon still references ``Pombhurna's semi-urban environment.''
+\end{minipage}
+}
+\end{center}
+
+\subsection{Breakpoint Distance Error in Sakri Report}
+
+\begin{center}
+\fcolorbox{accentred}{uniquecolor}{%
+\begin{minipage}{0.9\textwidth}
+\textbf{Technical Error:} The Sakri report computes the breakpoint distance as $d_{BP} = \frac{4 h_{BS} h_{UT} f_c}{c} = \frac{4 \times 25 \times 1.5 \times 1.8 \times 10^9}{3 \times 10^8} = 900$~m. However, 3GPP TR~38.901 specifies that for UMa scenarios, \textbf{effective heights} must be used: $h'_{BS} = h_{BS} - h_E$ and $h'_{UT} = h_{UT} - h_E$ where $h_E = 1$~m. This gives $h'_{BS} = 24$~m and $h'_{UT} = 0.5$~m, yielding $d'_{BP} = 452.4$~m. The Sakri report uses the wrong heights, overestimating the breakpoint by a factor of $\approx$2. While this does not affect the NLOS path loss calculation (which does not depend on $d_{BP}$), it leads to incorrect LOS/NLOS regime selection near the breakpoint.
 \end{minipage}
 }
 \end{center}
@@ -564,13 +606,17 @@ Channel Sim Code & Separate modular script & Single combined script & Single com
 \subsection{Overall Assessment}
 
 \begin{enumerate}
-    \item \textbf{Link Budget Approach:} Kagal and Ralegaon use a simpler extended budget ($L_{\max} = 158$~dB); Pombhurna uses a more detailed approach with explicit noise floor, body loss, and penetration loss ($L_{\max} = 133$~dB). Both approaches are valid --- the choice depends on whether indoor coverage and body loss are design requirements.
+    \item \textbf{Link Budget Approach:} Four different approaches are now visible. Kagal/Ralegaon use an extended budget (158~dB). Sakri uses a simplified budget without antenna gain (140~dB). Pombhurna uses the most conservative approach with penetration/body losses (133~dB). All approaches are defensible, but the omission of antenna gain in Sakri's budget is questionable.
 
-    \item \textbf{Network Architecture:} Kagal presents the most balanced design (5 macro + 2 micro + 1 umbrella). Ralegaon's 17-site design is over-engineered for a town of 18.5k people. Pombhurna's design is operationally tight ($<$1~dB margin).
+    \item \textbf{Network Architecture:} Kagal has the most elegant design (7-cell hex ring, no umbrella needed). Sakri demonstrates best practice in iterative design (redesigning umbrella cells when PL constraints fail). Ralegaon's 17-site design is over-engineered. Pombhurna is operationally tight.
 
-    \item \textbf{Channel Simulation:} Kagal is the only report with a full, end-to-end 12-step CDL implementation producing actual simulation results (PDP, APS, heatmap). The other two stop at Step~6.
+    \item \textbf{Channel Simulation:} Kagal is the only report with a full 12-step CDL implementation producing simulation outputs. Sakri implements Steps~1--6 with code results but uses a single-antenna model. Ralegaon/Pombhurna implement Steps~1--6 with identical code.
 
-    \item \textbf{Code Originality:} Kagal's code is independently authored. Ralegaon and Pombhurna share identical code.
+    \item \textbf{Documentation Quality:} Sakri provides the best visual documentation (14 figures covering every design stage). Kagal provides the best technical depth (complete formulas, code, and simulation plots). Ralegaon provides the best geographic documentation (GPS coordinates).
+
+    \item \textbf{Code Originality:} Kagal's code is independently authored. Sakri does not include code (cannot be verified). Ralegaon and Pombhurna share identical code.
+
+    \item \textbf{Technical Errors:} Sakri has a breakpoint distance error. Ralegaon has an internal $L_{\max}$ inconsistency (report says 158~dB, code computes 133~dB).
 \end{enumerate}
 
 \end{document}
