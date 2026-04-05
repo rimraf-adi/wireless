@@ -1,0 +1,83 @@
+abstract: This report walks through the radio network planning process for Kagal, a small town in Kolhapur district, Maharashtra. The goal was to design a working 4G LTE network on Band~3 (1800~MHz). We started with a ground-level site survey to get a feel for the terrain and local building patterns, then worked out a link budget that gives us $L_{\max} = 158$~dB and a maximum cell reach of about 3.68~km using the UMa NLOS path loss model from 3GPP TR~38.901~\cite{3gpp_38901}. Based on this, we laid out a \textbf{7-site macrocell grid} in a standard hexagonal ring pattern (1~centre + 6~surrounding) with a microcell overlay for high-traffic spots. The 7-cell layout gives complete, gap-free coverage of the entire Kagal area including the NH-48 highway corridor, where macrocell overlap provides continuous coverage for fast-moving vehicles without needing a separate umbrella cell. In the second part, we simulate the fast-fading radio channel using the Clustered Delay Line (CDL) model from the same standard~\cite{3gpp_38901}, going through all twelve steps up to the final channel matrix~$H$. The Python scripts used for everything are attached at the end along with their sample outputs.
+
+about_location: Kagal sits at 16\textdegree35$'$N, 74\textdegree19$'$E, roughly 16~km south of Kolhapur city, at an elevation of about 553~m above sea level. The town has a population of around 49,000 people~\cite{census_india} spread across 8--10~km$^2$. Most buildings are 2--3 storeys tall (6--10~m), which is fairly typical of smaller towns in this part of Maharashtra.
+
+needs_coverage_intro: 'After looking at maps and visiting the area, we identified a few things the network needs to handle well:'
+
+needs_coverage_list: "    \\item \\textbf{NH-48 Highway}: This is a six-lane national highway that runs along the western edge of town. Traffic is fast-moving, so the network needs to support seamless handovers without dropped calls.\n    \\item \\textbf{Dudhganga River}: The river creates propagation issues. Signals get absorbed and reflected off the water surface, so wherever possible we want to avoid relying on signals crossing the river.\n    \\item \\textbf{Main Market}: The commercial area in the town centre has the most foot traffic and the highest data demand. This is an obvious candidate for extra capacity.\n    \\item \\textbf{Bus Stand}: Another busy spot during peak hours; travellers use voice and data services heavily here.\n    \\item \\textbf{Residential Areas}: The older parts of town have narrow lanes and tightly packed 2--3 storey buildings. Getting good indoor signal here is a challenge.\n    \\item \\textbf{Open Outskirts}: The agricultural land surrounding the town has very few obstructions, so signals travel much farther out here."
+
+lte_parameters_intro: We are planning on Band~3 (1800~MHz), which is the most commonly used LTE band in India. Table~\ref{tab:lte_parameters} lists the key parameters.
+
+pathloss_calc_intro: 'The simplest version of the link budget is just the difference between what we transmit and the weakest signal the phone can pick up:'
+
+pathloss_calc_mid: 'In reality, we also gain from the antenna and lose some signal in cables and to fading. Putting it all together:'
+
+pathloss_calc_outro: This is the number we will use for all the planning that follows.
+
+models_intro: All the path loss equations used here come from \textbf{3GPP TR~38.901}~\cite{3gpp_38901}, Table~7.4.1-1. Frequency is in GHz, distances in metres.
+
+uma_nlos_intro: 'For UMa, the effective heights are computed by subtracting $h_E = 1$~m from both the BS and UE heights, giving $h''_{\text{BS}} = 24$~m and $h''_{\text{UT}} = 0.5$~m. This gives the correct breakpoint distance per Table 7.4.1-1 Note 1:'
+
+uma_los_intro: 'We also need the UMa LOS formula as a lower bound:'
+
+uma_nlos_mid: 'The NLOS formula, which is the one we actually use for planning:'
+
+uma_nlos_outro: Shadow fading standard deviation is 6.0~dB. Valid from 10~m to 5~km.
+
+umi_nlos_intro: '\textbf{UMi NLOS} is used for the microcells where the antenna sits at just 10~m:'
+
+rma_nlos_intro: \textbf{RMa NLOS} is evaluated for potential umbrella cells. According to 3GPP TR~38.901~\cite{3gpp_38901}, the Rural Macro (RMa) model is specifically calibrated for base stations mounted at 35~m heights covering wide, flat areas, making it the correct choice for highway umbrella cells (unlike UMa which assumes 25~m heights and urban clutter). The full equation is in 3GPP TR~38.901~\cite{3gpp_38901} Table~7.4.1-1.
+
+why_uma: \textbf{UMa fits Kagal well} because the town centre buildings are around 10--15~m (Fig.~\ref{fig:site_photos}a) and our proposed 25~m tower height matches the UMa default. The cell sizes we need (under 3~km) sit comfortably inside UMa's validity range.
+
+why_rma: \textbf{We evaluate RMa for completeness}, since any umbrella cells covering the open highway would need the 35~m towers and rural propagation characteristics that RMa is designed for. As shown in Section~\ref{sec:special_cells}, our final overlapping macrocell layout made a separate umbrella cell unnecessary.
+
+why_nlos: \textbf{We use NLOS} as the default because, looking at the photos, most users in the residential and commercial areas will not have line-of-sight to the tower. Using NLOS gives us the worst-case path loss, which makes the design more robust.
+
+layout_design_intro: 'In a hexagonal cell layout with frequency reuse factor $N$, the ratio of co-channel distance to cell radius is~\cite{rappaport2024}:'
+
+icic_theory: Since LTE is based on Orthogonal Frequency-Division Multiple Access (OFDMA), the network architecture fundamentally supports a universal frequency reuse factor of $N=1$~\cite{dahlman2011}. Rather than physically separating frequencies as in GSM, LTE manages co-channel interference at cell edges using Inter-Cell Interference Coordination (ICIC) and fractional frequency reuse~\cite{dahlman2011}. This allows every cell to transmit on the full 10~MHz bandwidth at the same time, which maximises spectral efficiency.
+
+cell_math: Because $N=1$, we have $D/R = \sqrt{3} \approx 1.732$. Starting with $R \approx 1$~km, each hex cell covers about $2.598$~km$^2$. For an 8~km$^2$ town, that means 4~cells at minimum. With smaller cells ($R = 800$~m), each hex covers $2.598 \times 0.8^2 \approx 1.66$~km$^2$, so we need at least 5--6~cells for area coverage alone. We go with \textbf{7 cells} arranged in a standard hexagonal ring (1~centre + 6~surrounding) to guarantee full, gap-free coverage with proper overlap for handovers.
+
+cell_reach_intro: 'Taking the UMa NLOS formula and plugging in $L_{\max} = 158$~dB. Since $h_{\text{UT}} = 1.5$~m, the offset term drops out:'
+
+cell_reach_outro: Plugging 3680~m back into the formula gives $158.00$~dB, which matches $L_{\max}$ exactly.
+
+network_step_intro: Our calculated $R_{\max}$ of 3.68~km is much larger than the cell radii we actually need (around 800~m), so meeting the coverage constraint is straightforward. The challenge is making sure the cells tessellate properly so there are no gaps.
+
+try_1_outro: All three sites work individually, each with $R = 800$~m and staying well within the 3.68~km limit, but there are large gaps to the east, the west, and around the river. Three sites is clearly not enough.
+
+try_2_intro: 'We added two more sites to cover the eastern residential area and the river zone:'
+
+try_2_outro: Better, but there are still coverage holes to the north-east (towards the MIDC industrial area) and to the west beyond the highway. Five cells cannot form a complete hexagonal ring around the centre.
+
+try_3_intro: 'The standard solution is a 7-cell hex ring: one central cell surrounded by six cells at 60\textdegree\ intervals. The inter-site distance is $\sqrt{3} \times R = \sqrt{3} \times 800 \approx 1385$~m, which ensures proper overlap between adjacent hexagons.'
+
+why_7_cells: \textbf{Why 7 cells in a hex ring?} This is the natural tessellation pattern for hexagonal cells. With 6~surrounding cells at $60^\circ$ spacing and $\sqrt{3}R$ apart from the centre, every point in the coverage area falls within at least one cell, removing the gaps that a 5-cell layout would leave. The path loss at every cell edge is identical (132.1~dB), leaving a comfortable margin of $158.0 - 132.1 = 25.9$~dB compared to $L_{\max}$. Total coverage comes to $7 \times 2.598 \times 0.8^2 \approx 11.6$~km$^2$, which comfortably covers the 8~km$^2$ town area with generous overlap for seamless handovers. Site~4 sits on the western bank of the Dudhganga to avoid cross-river propagation, and the NH-48 corridor between Sites~2, 3 and~6 has triple-overlap for uninterrupted highway coverage.
+
+pathloss_check_intro: 'The path loss at a few key distances is listed below to confirm everything checks out:'
+
+special_cells_intro: On top of the seven macrocells, we deploy microcells where traffic demand is highest.
+
+microcells_intro: '\textbf{Microcells} are small cells with 10~m antenna height and about 200--300~m radius. We put one in the \textbf{main market area} where user density spikes during business hours, and another at the \textbf{bus stand} where commuters crowd during rush hour. Running the UMi NLOS formula at 300~m:'
+
+highway_intro: '\textbf{Highway coverage without an umbrella cell}: With the 7-cell ring in place, the NH-48 corridor is covered by the overlap of Sites~2, 3, and~6. Site~6 (West / Pimpalgaon Khurd) sits on the western side of the highway while Sites~2 and~3 bracket it from the north and south. This triple overlap means a vehicle at highway speed will always be within range of at least one, and often two, macrocells during any handover transition. Adding a separate umbrella cell on top of this would be redundant since the hexagonal tessellation already provides continuous highway coverage.'
+
+sim_intro: In this section we simulate what the radio channel actually looks like at small time scales, following the step-by-step procedure in 3GPP TR~38.901~\cite{3gpp_38901}, Section~7.5. We use the CDL channel model with UMa NLOS parameters.
+
+sim_step_1_4_intro: '\textbf{Steps 1--4} set up the large-scale picture:'
+
+sim_step_1_4_list: "    \\item \\textbf{Antenna setup}: We model a $2 \\times 8$ MIMO link. The base station has 4~columns of cross-polarised elements (8~total, spaced at $\\lambda/2$), and the user has 2~elements. The user is placed 583~m from Site~1.\n    \\item \\textbf{Propagation type}: NLOS, same as the planning phase.\n    \\item \\textbf{Path loss}: The UMa NLOS model gives 126.7~dB at this distance. Shadow fading is drawn randomly from a normal distribution with 6~dB standard deviation.\n    \\item \\textbf{Large scale parameters}: Delay spread, angular spreads (ASD, ASA, ZSD, ZSA) are generated using correlated log-normal distributions. We use Cholesky decomposition on the cross-correlation matrix from Table~7.5-6~\\cite{3gpp_38901}."
+
+sim_step_5_9_intro: '\textbf{Steps 5--9} generate the multipath structure:'
+
+sim_step_5_9_list: "    \\item \\textbf{Cluster delays}: 20~clusters are drawn from an exponential distribution with $r_\\tau = 2.3$.\n    \\item \\textbf{Cluster powers}: Each cluster gets a power from an exponential PDP with per-cluster shadowing of 3~dB. Weak clusters (below $-25$~dB from the strongest) are dropped.\n    \\item \\textbf{Angles}: Azimuth angles (AOA and AOD) follow a wrapped Gaussian distribution, and zenith angles (ZOA and ZOD) follow a Laplacian. The ray offsets from Table~7.5-3 are applied with the right cluster spreads.\n    \\item \\textbf{Ray coupling}: Rays within each cluster are randomly shuffled to pair up AOD with AOA, and ZOD with ZOA.\n    \\item \\textbf{Cross-polarisation}: Each ray gets an XPR value drawn from $\\mathcal{N}(7, 3^2)$~dB."
+
+sim_step_10_12_intro: '\textbf{Steps 10--12} assemble the final channel:'
+
+sim_step_10_12_list: "    \\item \\textbf{Random phases}: Four phase values (one for each polarisation combination) are drawn uniformly from $[-\\pi, \\pi]$ for every ray.\n    \\item \\textbf{Channel matrix}: The full $H_{u,s,n}^{\\text{NLOS}}(t)$ is built by summing over all rays and clusters, including antenna patterns, array steering vectors, the polarisation coupling matrix, and Doppler shift at 3~km/h walking speed.\n    \\item \\textbf{Applying path loss}: The large-scale path loss and shadow fading from Step~3 are applied to get the final channel coefficients."
+
+sim_results_intro: 'We ran the simulation for the link between Site~1 and a user at $d_{\text{2D}} = 583$~m:'
+
+sim_results_outro: The PDP reflects the kind of multipath you would expect from reflections off the buildings shown in Figs.~\ref{fig:site_photos}b and~d. The channel matrix has a condition number of roughly 4--5~dB, which is a good sign for MIMO spatial multiplexing since it means the two streams are well separated. The cross-polarised BS array helps with diversity.
